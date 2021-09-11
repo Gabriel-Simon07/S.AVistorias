@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace S.A_Vistorias_ocorrencias.Functions
+namespace S.A_Vistorias_ocorrencias
 {
 	public class FunctionUsuario
 	{
