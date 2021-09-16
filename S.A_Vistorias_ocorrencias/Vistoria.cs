@@ -11,10 +11,19 @@ namespace S.A_Vistorias_ocorrencias
 {
 	public class Vistoria
 	{
+		public Int32 idVistoria { get; set; }
+		public bool status { get; set; }
+		public DateTime dataAbertura { get; set; }
+		public Int32 idUsuario { get; set; }
+		public string imagem { get; set; }
+		public string descricao { get; set; }
+		public string endereco { get; set; }
+
 		public Vistoria() { }
 
-		public Vistoria(bool status, DateTime data, string imagem, string descricao, string endereco)
+		public Vistoria(Int32 idVistoria, bool status, DateTime data, string imagem, string descricao, string endereco)
 		{
+			this.idVistoria = idVistoria;
 			this.status = status;
 			this.dataAbertura = data;
 			this.imagem = imagem;
@@ -33,12 +42,6 @@ namespace S.A_Vistorias_ocorrencias
 			this.endereco = !dadoLido.IsDBNull(6) ? dadoLido.GetString(6) : "";
 		}
 
-		public Int32 idVistoria { get; set; }
-		public bool status { get; set; }
-		public DateTime dataAbertura { get; set; }
-		public Int32 idUsuario { get; set; }
-		public string imagem { get; set; }
-		public string descricao { get; set; }
-		public string endereco { get; set; }
+		
 	}
 }

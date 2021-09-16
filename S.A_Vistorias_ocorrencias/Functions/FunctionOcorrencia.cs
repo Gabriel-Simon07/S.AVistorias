@@ -18,14 +18,20 @@ namespace S.A_Vistorias_ocorrencias
 
 			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
 
-			string query = $"SELECT  * ocorrencia FROM ocorrencia WHERE id_vistoria = '{idVistoria}' LIMIT 1";
+			string query = $"SELECT  * FROM ocorrencia WHERE id_vistoria = '{idVistoria}' LIMIT 1";
 
-			MySqlCommand command = new MySqlCommand(query, conexao);
+			MySqlCommand comando = new MySqlCommand(query, conexao);
 
 			try
 			{
 				conexao.Open();
 
+				MySqlDataReader dadoLido = comando.ExecuteReader();
+
+				while (dadoLido.Read())
+				{
+					ocorrencia = (new Ocorrencia(dadoLido));
+				}
 
 			}
 			catch (SqlException se)
@@ -36,6 +42,40 @@ namespace S.A_Vistorias_ocorrencias
 			{
 				conexao.Close();
 			}
+			return ocorrencia;
+		}
+
+		public static void atualizarOcorrencia(string idOcorrencia, string descricao, Enum tipo)
+		{
+			Ocorrencia ocorrencia = FunctionOcorrencia.getOcorrenciaByIdVistoria(Int32.Parse(idOcorrencia));
+			ocorrencia.descricao = descricao;
+			ocorrencia.tipo = tipo;
+
+			Functions.AtualizarOcorrencia(ocorrencia);
+		}
+
+		public static void deletarOcorrenciaById(string idOcorrencia)
+		{
+			Ocorrencia ocorrencia = FunctionOcorrencia.getOcorrenciaByIdVistoria(Int32.Parse(idOcorrencia));
+
+			Functions.TodasOcorrencias().Remove(ocorrencia);	
+		}
+
+		public static void getListOcorrencias()
+		{
+
+		}
+
+		public static void CadastrarOcorrencia(Int32 idVistoria, string descricao, DateTime data, Enum tipo)
+		{
+			Ocorrencia ocorrencia = new Ocorrencia();
+
+			ocorrencia.idVistoria = idVistoria;
+			ocorrencia.descricao = descricao;
+			ocorrencia.dataOcorrencia = data;
+			ocorrencia.tipo = tipo;
+
+			Functions.SalvarOcorrencia(ocorrencia);
 		}
 	}
 }

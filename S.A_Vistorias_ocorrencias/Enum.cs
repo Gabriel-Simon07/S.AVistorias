@@ -7,11 +7,10 @@ namespace S.A_Vistorias_ocorrencias
 {
 	public class Enum
 	{
-		enum Tipo
+		public enum Tipo
 		{
 			PATRIMONIAL,
 			AMBIENTE
 		};
-
 	}
 }

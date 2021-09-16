@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enum.cs" />
+    <Compile Include="Functions\FunctionOcorrencia.cs" />
     <Compile Include="Functions\Functions.cs" />
     <Compile Include="Functions\FunctionUsuario.cs" />
     <Compile Include="Ocorrencia.cs" />
