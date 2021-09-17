@@ -68,7 +68,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="View\ListaVistorias.aspx" />
+    <Content Include="View\TelaCadastroVistoria.aspx" />
+    <Content Include="View\TelaListaVistorias.aspx" />
+    <Content Include="View\TelaListaOcorrencias.aspx" />
     <Content Include="View\TelaLogin.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -80,12 +82,26 @@
     <Compile Include="Functions\FunctionVistoria.cs" />
     <Compile Include="Ocorrencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\ListaVistorias.aspx.cs">
-      <DependentUpon>ListaVistorias.aspx</DependentUpon>
+    <Compile Include="View\TelaCadastroVistoria.aspx.cs">
+      <DependentUpon>TelaCadastroVistoria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\ListaVistorias.aspx.designer.cs">
-      <DependentUpon>ListaVistorias.aspx</DependentUpon>
+    <Compile Include="View\TelaCadastroVistoria.aspx.designer.cs">
+      <DependentUpon>TelaCadastroVistoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\TelaListaVistorias.aspx.cs">
+      <DependentUpon>TelaListaVistorias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\TelaListaVistorias.aspx.designer.cs">
+      <DependentUpon>TelaListaVistorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\TelaListaOcorrencias.aspx.cs">
+      <DependentUpon>TelaListaOcorrencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\TelaListaOcorrencias.aspx.designer.cs">
+      <DependentUpon>TelaListaOcorrencias.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\TelaLogin.aspx.cs">
       <DependentUpon>TelaLogin.aspx</DependentUpon>

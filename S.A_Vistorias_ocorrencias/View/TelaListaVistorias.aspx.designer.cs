@@ -130,5 +130,23 @@ namespace S.A_Vistorias_ocorrencias.View
 		/// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.TextBox txtDataFinal;
+
+		/// <summary>
+		/// Controle btnPesquisar.
+		/// </summary>
+		/// <remarks>
+		/// Campo gerado automaticamente.
+		/// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button btnPesquisar;
+
+		/// <summary>
+		/// Controle gdListaVistorias.
+		/// </summary>
+		/// <remarks>
+		/// Campo gerado automaticamente.
+		/// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.GridView gdListaVistorias;
 	}
 }

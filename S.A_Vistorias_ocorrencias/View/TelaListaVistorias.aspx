@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListaVistorias.aspx.cs" Inherits="S.A_Vistorias_ocorrencias.View.ListaVistorias" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TelaListaVistorias.aspx.cs" Inherits="S.A_Vistorias_ocorrencias.View.ListaVistorias" %>
 
 <!DOCTYPE html>
 
@@ -36,5 +36,11 @@
             </div>
         </div>
     </form>
+	<div>
+        <asp:Button ID="btnPesquisar" runat="server" Text="Pesquisar" />
+	</div>
+	<div>
+        <asp:GridView ID="gdListaVistorias" runat="server"></asp:GridView>
+	</div>
 </body>
 </html>
