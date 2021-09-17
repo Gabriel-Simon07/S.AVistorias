@@ -47,7 +47,7 @@ namespace S.A_Vistorias_ocorrencias
 
 		public static void atualizarOcorrencia(string idOcorrencia, string descricao, Enum tipo)
 		{
-			Ocorrencia ocorrencia = FunctionOcorrencia.getOcorrenciaByIdVistoria(Int32.Parse(idOcorrencia));
+			Ocorrencia ocorrencia = getOcorrenciaByIdVistoria(Int32.Parse(idOcorrencia));
 			ocorrencia.descricao = descricao;
 			ocorrencia.tipo = tipo;
 
@@ -56,7 +56,7 @@ namespace S.A_Vistorias_ocorrencias
 
 		public static void deletarOcorrenciaById(string idOcorrencia)
 		{
-			Ocorrencia ocorrencia = FunctionOcorrencia.getOcorrenciaByIdVistoria(Int32.Parse(idOcorrencia));
+			Ocorrencia ocorrencia = getOcorrenciaByIdVistoria(Int32.Parse(idOcorrencia));
 
 			Functions.TodasOcorrencias().Remove(ocorrencia);	
 		}

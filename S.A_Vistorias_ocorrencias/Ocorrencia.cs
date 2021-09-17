@@ -32,7 +32,9 @@ namespace S.A_Vistorias_ocorrencias
 			this.idVistoria = !dadoLido.IsDBNull(1) ? dadoLido.GetInt32(1) : 0;
 			this.descricao = !dadoLido.IsDBNull(2) ? dadoLido.GetString(2) : "";
 			this.dataOcorrencia = !dadoLido.IsDBNull(3) ? dadoLido.GetDateTime(3) : DateTime.MinValue;
-			this.tipo = !dadoLido.IsDBNull(4) ? dadoLido.GetEnumerator(4). : Enum.Tipo.AMBIENTE;
+			string tipoStr = !dadoLido.IsDBNull(4) ? dadoLido.GetString(4) : "AMBIENTE";
+			this.tipo = Enumeradores.Parse(typeof(Enumeradores.Tipo), tipoStr);
+
 		}
 	}
 }

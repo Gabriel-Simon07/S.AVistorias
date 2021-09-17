@@ -5,12 +5,17 @@ using System.Web;
 
 namespace S.A_Vistorias_ocorrencias
 {
-	public class Enum
+	public class Enumeradores
 	{
 		public enum Tipo
 		{
 			PATRIMONIAL,
 			AMBIENTE
 		};
+
+		internal static Tipo Parse(Type type, string tipoStr)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
