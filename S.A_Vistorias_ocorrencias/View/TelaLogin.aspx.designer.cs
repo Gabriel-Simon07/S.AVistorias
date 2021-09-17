@@ -24,21 +24,48 @@ namespace S.A_Vistorias_ocorrencias
 		protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
 		/// <summary>
-		/// Controle Label1.
+		/// Controle LabelUsuario.
 		/// </summary>
 		/// <remarks>
 		/// Campo gerado automaticamente.
 		/// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label Label1;
+		protected global::System.Web.UI.WebControls.Label LabelUsuario;
 
 		/// <summary>
-		/// Controle Label2.
+		/// Controle txtUsuario.
 		/// </summary>
 		/// <remarks>
 		/// Campo gerado automaticamente.
 		/// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label Label2;
+		protected global::System.Web.UI.WebControls.TextBox txtUsuario;
+
+		/// <summary>
+		/// Controle LabelSenha.
+		/// </summary>
+		/// <remarks>
+		/// Campo gerado automaticamente.
+		/// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelSenha;
+
+		/// <summary>
+		/// Controle txtSenha.
+		/// </summary>
+		/// <remarks>
+		/// Campo gerado automaticamente.
+		/// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtSenha;
+
+		/// <summary>
+		/// Controle btnConfirmar.
+		/// </summary>
+		/// <remarks>
+		/// Campo gerado automaticamente.
+		/// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button btnConfirmar;
 	}
 }
