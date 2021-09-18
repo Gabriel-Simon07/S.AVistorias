@@ -16,6 +16,43 @@ namespace S.A_Vistorias_ocorrencias
 			return "server=localhost;user id=root;sslmode=None;database=s_a_vistoria_e_ocorrencias";
 		}
 
+		public static bool ValidaUsuario(string login, string senha)
+		{
+			Usuario usuario = ObterUsuarioPorId(login);
+			return usuario.login == login && usuario.senha == senha;
+		}
+
+		public static Usuario ObterUsuarioPorId(string login)
+		{
+			Usuario usuario = new Usuario();
+
+			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
+
+			string query = $"SELECT * FROM usuario WHERE login = '{login}'LIMIT 1";
+
+			MySqlCommand comando = new MySqlCommand(query, conexao);
+
+			try
+			{
+				conexao.Open();
+
+				MySqlDataReader dadoLido = comando.ExecuteReader();
+				while (dadoLido.Read())
+				{
+					usuario = (new Usuario(dadoLido));
+				}
+			}
+			catch (SqlException se)
+			{
+				string erro = se.ToString();
+			}
+			finally
+			{
+				conexao.Close();
+			}
+			return usuario;
+		}
+
 		public static List<Vistoria> TodasVistorias()
 		{
 			List<Vistoria> lista = new List<Vistoria>();

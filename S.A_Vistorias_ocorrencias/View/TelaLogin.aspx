@@ -19,6 +19,6 @@
             <asp:TextBox ID="txtSenha" runat="server"></asp:TextBox>    
         </div>
     </form>
-    <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" />
+    <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" />
 </body>
 </html>
