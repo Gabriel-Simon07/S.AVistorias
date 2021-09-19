@@ -18,7 +18,8 @@
             <asp:Label ID="LabelSenha" runat="server" Text="Senha"></asp:Label>
             <asp:TextBox ID="txtSenha" runat="server"></asp:TextBox>    
         </div>
+        <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" />
     </form>
-    <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" />
+    
 </body>
 </html>
