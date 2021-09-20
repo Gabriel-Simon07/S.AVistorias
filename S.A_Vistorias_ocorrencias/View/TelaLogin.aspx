@@ -8,16 +8,27 @@
     <title></title>
 </head>
 <body>
-<img alt="vistoriaOCorrencia" src="Downloads\imagem\marreco" />
+<img src="Downloads\imagem\marreco" />
     <form id="form1" runat="server">
-        <div>
-            <asp:Label ID="LabelUsuario" runat="server" Text="Usuário"></asp:Label>
-            <asp:TextBox ID="txtUsuario" runat="server"></asp:TextBox>
-        </div>
-        <div>
-            <asp:Label ID="LabelSenha" runat="server" Text="Senha"></asp:Label>
-            <asp:TextBox ID="txtSenha" runat="server"></asp:TextBox>    
-        </div>
+        <table>
+            <img alt="" src="../View/LogoGole_drinks.jpeg" style="height: 87px; width: 90px" align="middle" />
+                <tr>
+                    <td>
+                        <asp:Label ID="LabelUsuario" runat="server" Text="Usuário"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtUsuario" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="LabelSenha" runat="server" Text="Senha"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtSenha" runat="server" TextMode="Password"></asp:TextBox>    
+                    </td>
+                </tr>
+        </table>
         <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" />
     </form>
     
