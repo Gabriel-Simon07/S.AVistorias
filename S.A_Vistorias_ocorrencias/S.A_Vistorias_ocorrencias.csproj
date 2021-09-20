@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Controller\LogoGole_drinks.jpeg" />
     <Content Include="View\TelaCadastroOcorrencia.aspx" />
     <Content Include="View\TelaCadastroVistoria.aspx" />
     <Content Include="View\TelaListaVistorias.aspx" />
@@ -77,10 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Enumeradores.cs" />
-    <Compile Include="Controller\FunctionOcorrencia.cs" />
     <Compile Include="Controller\Functions.cs" />
-    <Compile Include="Controller\FunctionUsuario.cs" />
-    <Compile Include="Controller\FunctionVistoria.cs" />
     <Compile Include="Model\Ocorrencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\TelaCadastroOcorrencia.aspx.cs">
