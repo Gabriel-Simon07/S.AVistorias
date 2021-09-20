@@ -24,6 +24,15 @@ namespace S.A_Vistorias_ocorrencias.View
 		protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
 		/// <summary>
+		/// Controle tblCadastro.
+		/// </summary>
+		/// <remarks>
+		/// Campo gerado automaticamente.
+		/// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlTable tblCadastro;
+
+		/// <summary>
 		/// Controle LabelIdVistoria.
 		/// </summary>
 		/// <remarks>
@@ -141,13 +150,13 @@ namespace S.A_Vistorias_ocorrencias.View
 		protected global::System.Web.UI.WebControls.Label LabelImagem;
 
 		/// <summary>
-		/// Controle FileUploadImagem.
+		/// Controle txtImagem.
 		/// </summary>
 		/// <remarks>
 		/// Campo gerado automaticamente.
 		/// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.FileUpload FileUploadImagem;
+		protected global::System.Web.UI.WebControls.FileUpload txtImagem;
 
 		/// <summary>
 		/// Controle btnInserir.

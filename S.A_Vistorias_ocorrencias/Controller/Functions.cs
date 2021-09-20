@@ -149,8 +149,9 @@ namespace S.A_Vistorias_ocorrencias
 		{
 			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
 
-			string query = "INSERT INTO vistoria (id_usuario, status_vistoria, data_abertura, endereco, " +
-				"imagem_local, descricao_vistoria) VALUES (@id_usuario, @status_vistoria, @data_abertura, @endereco, @imagem_local, @descricao_vistoria)";
+			//INSERIR O CAMPO DE DATA NO BANCO, TIREI DO SCRIPT
+			string query = "INSERT INTO vistoria (id_usuario, status_vistoria, endereco, " +
+				"imagem_local, descricao_vistoria) VALUES (@id_usuario, @status_vistoria, @endereco, @imagem_local, @descricao_vistoria)";
 
 			MySqlCommand comando = new MySqlCommand(query, conexao);
 
@@ -160,7 +161,7 @@ namespace S.A_Vistorias_ocorrencias
 
 				comando.Parameters.AddWithValue("@id_usuario", vistoria.idUsuario);
 				comando.Parameters.AddWithValue("@status_vistoria", vistoria.status);
-				comando.Parameters.AddWithValue("@data_abertura", vistoria.dataAbertura);
+				//comando.Parameters.AddWithValue("@data_abertura", vistoria.dataAbertura);
 				comando.Parameters.AddWithValue("@endereco", vistoria.endereco);
 				comando.Parameters.AddWithValue("@imagem_local", vistoria.imagem);
 				comando.Parameters.AddWithValue("@descricao_vistoria", vistoria.descricao);

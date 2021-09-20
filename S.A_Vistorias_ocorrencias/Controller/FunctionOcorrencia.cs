@@ -58,7 +58,7 @@ namespace S.A_Vistorias_ocorrencias
 		{
 			Ocorrencia ocorrencia = getOcorrenciaByIdVistoria(Int32.Parse(idOcorrencia));
 
-			Functions.TodasOcorrencias().Remove(ocorrencia);	
+			//Functions.TodasOcorrencias().Remove(ocorrencia);	
 		}
 
 		public static void getListOcorrencias()
