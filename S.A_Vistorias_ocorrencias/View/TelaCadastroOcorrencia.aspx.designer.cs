@@ -87,13 +87,13 @@ namespace S.A_Vistorias_ocorrencias.View
 		protected global::System.Web.UI.WebControls.Label LabelTipo;
 
 		/// <summary>
-		/// Controle txtTipo.
+		/// Controle dplTipo.
 		/// </summary>
 		/// <remarks>
 		/// Campo gerado automaticamente.
 		/// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox txtTipo;
+		protected global::System.Web.UI.WebControls.DropDownList dplTipo;
 
 		/// <summary>
 		/// Controle LabelDescricao.

@@ -17,7 +17,7 @@
                         <asp:Label ID="LabelIdVistoria" runat="server" Text="ID Vistoria"></asp:Label>
 					</td>
                     <td>
-                        <asp:TextBox ID="txtIdVistoria" ReadOnly="false" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtIdVistoria" ReadOnly="true" runat="server"></asp:TextBox>
                     </td>
 				</tr>
                 <tr>
@@ -25,7 +25,7 @@
                         <asp:Label ID="LabelData" runat="server" Text="Data"></asp:Label>
 					</td>
                     <td>
-                        <asp:TextBox ID="txtData" ReadOnly="false" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtData" ReadOnly="true" runat="server"></asp:TextBox>
                     </td>
 				</tr>                
                 <tr>
@@ -33,7 +33,10 @@
                         <asp:Label ID="LabelStatus" runat="server" Text="Status"></asp:Label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtStatus" runat="server"></asp:TextBox>
+                        <asp:DropDownList ID="DropDownList1" runat="server" Height="16px" Width="127px">
+							<asp:ListItem>Aberto</asp:ListItem>
+							<asp:ListItem>Fechado</asp:ListItem>
+						</asp:DropDownList>
                     </td>
                 </tr>
                 <tr>

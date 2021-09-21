@@ -6,16 +6,21 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+	<style type="text/css">
+		.auto-style1 {
+			height: 24px;
+		}
+	</style>
 </head>
 <body>
     <form id="form1" runat="server">
         <table>
             <tr>
-                <td>
+                <td class="auto-style1">
                     <asp:Label ID="LabelIdVistoria" runat="server" Text="ID Vistoria"></asp:Label>
                 </td>
-                <td>
-                    <asp:TextBox ID="txtIdVistoria" runat="server"></asp:TextBox>
+                <td class="auto-style1">
+                    <asp:TextBox ID="txtIdVistoria" ReadOnly="true" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -23,7 +28,7 @@
                     <asp:Label ID="LabelIdOcorrencia" runat="server" Text="ID Ocorrência"></asp:Label>                
                 </td>
                 <td>
-                    <asp:TextBox ID="txtIdOcorrencia" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtIdOcorrencia" ReadOnly="true" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -31,7 +36,7 @@
                     <asp:Label ID="LabelData" runat="server" Text="Data"></asp:Label>                
                 </td>
                 <td>
-                    <asp:TextBox ID="txtData" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtData" ReadOnly="true" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -39,7 +44,8 @@
                     <asp:Label ID="LabelTipo" runat="server" Text="Tipo"></asp:Label>                
                 </td>
                 <td>
-                    <asp:TextBox ID="txtTipo" runat="server"></asp:TextBox>
+                    <asp:DropDownList ID="dplTipo" runat="server" Height="16px" Width="126px">
+					</asp:DropDownList>
                 </td>
             </tr>
              <tr>
