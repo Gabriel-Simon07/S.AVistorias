@@ -28,12 +28,37 @@ namespace S.A_Vistorias_ocorrencias
 			}
 		}
 
+		protected void logar(string usuario, string senha)
+		{
+			Usuario usuarioLogar = ObterUsuarioLogin(usuario);
+			usuarioLogar.login = usuario;
+			usuarioLogar.senha = senha;
+
+
+			if (usuarioLogar.senha == "12345" && usuarioLogar.login =="Analista")
+			{
+				Response.Redirect("TelaCadastroVistoria.aspx");
+			}
+			else if (usuarioLogar.senha == "12345" && usuarioLogar.login == "Operador")
+			{
+				Response.Redirect("TelaListaVistorias.aspx");
+			}
+		}
+
 		protected void btnConfirmar_Click(object sender, EventArgs e)
 		{
-			bool temError = false;
-			string mensagemErro = string.Empty;
+			string mensagemErro = "passei por aqui";
+			string usuario = txtUsuario.Text;
+			logar(txtUsuario.Text, txtSenha.Text);
+			Response.Write("<script>console.log('Erro: " + mensagemErro + " " + usuario + "')<script>");
 
-			string usuario = txtUsuario.Text = string.Empty;
+
+
+
+			bool temError = false;
+			// string mensagemErro = string.Empty;
+
+			//string usuario = txtUsuario.Text = string.Empty;
 			string senha = txtSenha.Text = string.Empty;
 
 			if (!temError)

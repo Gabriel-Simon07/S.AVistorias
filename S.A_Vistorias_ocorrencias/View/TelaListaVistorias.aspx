@@ -35,12 +35,10 @@
                 <asp:TextBox ID="txtDataFinal" runat="server"></asp:TextBox>
             </div>
         </div>
-    </form>
-	<div>
         <asp:Button ID="btnPesquisar" runat="server" Text="Pesquisar" />
-	</div>
 	<div>
         <asp:GridView ID="gdListaVistorias" runat="server"></asp:GridView>
 	</div>
+    </form>
 </body>
 </html>
