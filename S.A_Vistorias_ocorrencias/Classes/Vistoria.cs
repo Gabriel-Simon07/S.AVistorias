@@ -20,14 +20,14 @@ namespace S.A_Vistorias_ocorrencias
 		public string endereco { get; set; }
 
 		public Vistoria() { }
-
-		public Vistoria(string idUsuario, string status, string imagem, string descricao, string endereco)
+		//inserir imagem no construtor string imagem
+		public Vistoria(string idUsuario, string status, string descricao, string endereco)
 		{
 			//INSERIR DATA NO CONSTRUTOR
 			this.idUsuario = idUsuario;
 			this.status = status;
 			//this.dataAbertura = data;
-			this.imagem = imagem;
+			//this.imagem = imagem;
 			this.descricao = descricao;
 			this.endereco = endereco;
 		}

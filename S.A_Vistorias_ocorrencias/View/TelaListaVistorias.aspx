@@ -58,8 +58,15 @@
                 <asp:TextBox ID="txtDataFinal" runat="server"></asp:TextBox>
             </td>
         </tr>
+           <tr>
+               <td>
+                   <asp:Button ID="btnPesquisar" runat="server" Text="Pesquisar" />
+               </td>
+               <td>
+                   <asp:Button ID="btnInserirVistoria" runat="server" Text="Inserir Vistoria" OnClick="btnInserirVistoria_Click" />
+               </td>
+           </tr>
       </table>          
-        <asp:Button ID="btnPesquisar" runat="server" Text="Pesquisar" />
         <asp:GridView ID="gdListaVistorias" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
 			<AlternatingRowStyle BackColor="White" />
 			<Columns>

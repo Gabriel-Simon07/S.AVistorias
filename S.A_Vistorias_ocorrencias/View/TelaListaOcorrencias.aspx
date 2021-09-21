@@ -9,35 +9,62 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-			<div>
-                <asp:Label ID="LabelTipo" runat="server" Text="Tipo"></asp:Label>
-                <asp:TextBox ID="txtTipo" runat="server"></asp:TextBox>
-			</div>
-            <div>
-                <asp:Label ID="LabelDataInicial" runat="server" Text="Data Inicial"></asp:Label>
-                <asp:TextBox ID="txtDataInicial" runat="server"></asp:TextBox>
-			</div>
-            <div>
-                <asp:Label ID="LabelDescricao" runat="server" Text="Descrição"></asp:Label>
-                <asp:TextBox ID="txtDescricao" runat="server"></asp:TextBox>
-			</div>
-            <div>
-                <asp:Label ID="LabelIdVistoria" runat="server" Text="ID Vistoria"></asp:Label>
-                <asp:TextBox ID="txtIdVistoria" runat="server"></asp:TextBox>
-			</div>
-            <div>
-                <asp:Label ID="LabelDataFinal" runat="server" Text="Data Final"></asp:Label>
-                <asp:TextBox ID="txtDataFinal" runat="server"></asp:TextBox>
-			</div>
-        </div>
+        <table>
+            <tr>
+                <td>
+                    <asp:Label ID="LabelTipo" runat="server" Text="Tipo"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtTipo" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Label ID="LabelDataInicial" runat="server" Text="Data Inicial"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtDataInicial" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Label ID="LabelDescricao" runat="server" Text="Descrição"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtDescricao" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Label ID="LabelIdVistoria" runat="server" Text="ID Vistoria"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtIdVistoria" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Label ID="LabelDataFinal" runat="server" Text="Data Final"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtDataFinal" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+         </table>
     </form>
-    <asp:Button ID="btnPesquisarOcorrencia" runat="server" Text="Pesquisar" />
 	<div>
+        <asp:Button ID="btnPesquisarOcorrencia" runat="server" Text="Pesquisar" />
         <asp:Button ID="btnInserir" runat="server" Text="Inserir Ocorrências" />
 	</div>
 	<div>
-        <asp:GridView ID="gvListaOcorrencias" runat="server"></asp:GridView>
+        <asp:GridView ID="gvListaOcorrencias" runat="server" AutoGenerateColumns="False">
+			<Columns>
+				<asp:BoundField DataField="idOcorrencia" HeaderText="ID" />
+				<asp:BoundField DataField="tipo" HeaderText="Tipo" />
+				<asp:BoundField DataField="dataOcorrencia" HeaderText="Data Ocorrência" />
+				<asp:BoundField HeaderText="Foto" />
+			</Columns>
+		</asp:GridView>
 	</div>
 </body>
 </html>

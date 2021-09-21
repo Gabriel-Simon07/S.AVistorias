@@ -13,7 +13,7 @@ namespace S.A_Vistorias_ocorrencias
 	{
 		public static string ObterConnectionString()
 		{
-			return "server=localhost;user id=root;sslmode=None;database=s_a_vistoria_e_ocorrencias";
+			return "server=localhost;userid=root;sslmode=None;database=s_a_vistoria_e_ocorrencias";
 		}
 
 		public static bool ValidaUsuario(string login, string senha)
@@ -150,8 +150,9 @@ namespace S.A_Vistorias_ocorrencias
 			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
 
 			//INSERIR O CAMPO DE DATA NO BANCO, TIREI DO SCRIPT
+			//inserir o campo de imagem, @imagem_local
 			string query = "INSERT INTO vistoria (id_usuario, status_vistoria, endereco, " +
-				"imagem_local, descricao_vistoria) VALUES (@id_usuario, @status_vistoria, @endereco, @imagem_local, @descricao_vistoria)";
+				" descricao_vistoria) VALUES (@id_usuario, @status_vistoria, @endereco, @descricao_vistoria)";
 
 			MySqlCommand comando = new MySqlCommand(query, conexao);
 
@@ -163,8 +164,9 @@ namespace S.A_Vistorias_ocorrencias
 				comando.Parameters.AddWithValue("@status_vistoria", vistoria.status);
 				//comando.Parameters.AddWithValue("@data_abertura", vistoria.dataAbertura);
 				comando.Parameters.AddWithValue("@endereco", vistoria.endereco);
-				comando.Parameters.AddWithValue("@imagem_local", vistoria.imagem);
+				//comando.Parameters.AddWithValue("@imagem_local", vistoria.imagem);
 				comando.Parameters.AddWithValue("@descricao_vistoria", vistoria.descricao);
+				//comando.ExecuteNonQuery();
 				comando.ExecuteNonQuery();
 			}
 			catch (SqlException se)

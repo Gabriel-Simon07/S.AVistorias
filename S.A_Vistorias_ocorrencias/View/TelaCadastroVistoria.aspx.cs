@@ -22,30 +22,30 @@ namespace S.A_Vistorias_ocorrencias.View
 		{
 			// DateTime dataAtual = DateTime.Now;
 			//INSERIR DATA NO CONSTRUTOR DO CADASTRO
+			//inserir imagem no construtor txtImagem
 			Vistoria vistoria = new Vistoria();
-			CadastrarVistoria(txtIdResponsavel.Text, txtStatus.Text, txtImagem, txtDescricao.Text, txtEndereco.Text);
+			CadastrarVistoria(txtIdResponsavel.Text, txtStatus.Text, txtDescricao.Text, txtEndereco.Text);
 			Functions.SalvarVistoria(vistoria);
 			
 		}
 
 		//INSERIR DATA NO CONSTRUTOR DO CADASTRO
-		private void CadastrarVistoria(string idResponsavel, string status, FileUpload imagem, string descricao, string endereco)
+		private void CadastrarVistoria(string idResponsavel, string status, string descricao, string endereco)
 		{
-			string caminhoArquivo = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["caminhoArquivo"] + @"\" + imagem.FileName;
-			txtImagem.SaveAs(caminhoArquivo);
+			//string caminhoArquivo = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["caminhoArquivo"] + @"\" + imagem.FileName;
+			//txtImagem.SaveAs(caminhoArquivo);
 
 			Vistoria vistoria = new Vistoria();
 			
 			vistoria.idUsuario = idResponsavel;
+			vistoria.status = status;
 			//INSERIR DATA NO CONSTRUTOR DO CADASTRO
 			//vistoria.dataAbertura = data;
 			vistoria.descricao = descricao;
 			vistoria.endereco = endereco;
-			vistoria.idUsuario = idResponsavel;
-			vistoria.status = status;
-			vistoria.imagem = System.Configuration.ConfigurationManager.AppSettings
-				["caminhoArquivo"].Replace(@"\", "/") + "/" + imagem.FileName;
-			Functions.SalvarVistoria(vistoria);
+			//vistoria.imagem = System.Configuration.ConfigurationManager.AppSettings
+			//	["caminhoArquivo"].Replace(@"\", "/") + "/" + imagem.FileName;
+			//Functions.SalvarVistoria(vistoria);
 		}
 
 		public static Vistoria GetVistoriaComOcorrenciaById(Int32 idVistoria)
