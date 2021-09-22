@@ -39,6 +39,7 @@ namespace S.A_Vistorias_ocorrencias
 			{
 				Response.Redirect("TelaListaVistorias.aspx");
 			}
+
 			else if (usuarioLogar.senha == "12345" && usuarioLogar.login == "Operador")
 			{
 				Response.Redirect("TelaListaVistorias.aspx");

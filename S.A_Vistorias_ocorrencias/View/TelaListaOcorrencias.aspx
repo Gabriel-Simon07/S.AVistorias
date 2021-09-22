@@ -9,6 +9,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <img alt="" src="../View/LogoGole_drinks.jpeg" style="height: 80px; width: 82px" />
         <table>
             <tr>
                 <td>
@@ -54,8 +55,8 @@
          </table>
     </form>
 	<div>
-        <asp:Button ID="btnPesquisarOcorrencia" runat="server" Text="Pesquisar" />
-        <asp:Button ID="btnInserir" runat="server" Text="Inserir Ocorrências" />
+        <asp:Button ID="btnPesquisarOcorrencia" runat="server" Text="Pesquisar" BorderColor="Black" />
+        <asp:Button ID="btnInserir" runat="server" Text="Inserir Ocorrências" BorderColor="Black" />
 	</div>
 	<div>
         <asp:GridView ID="gvListaOcorrencias" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">

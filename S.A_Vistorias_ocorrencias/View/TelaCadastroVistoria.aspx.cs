@@ -24,7 +24,7 @@ namespace S.A_Vistorias_ocorrencias.View
 			//INSERIR DATA NO CONSTRUTOR DO CADASTRO
 			//inserir imagem no construtor txtImagem
 			Vistoria vistoria = new Vistoria();
-			CadastrarVistoria(txtIdResponsavel.Text, txtStatus.Text, txtDescricao.Text, txtEndereco.Text);
+			CadastrarVistoria(txtIdResponsavel.Text, dplStatus.Text, txtDescricao.Text, txtEndereco.Text);
 			Functions.SalvarVistoria(vistoria);
 			
 		}

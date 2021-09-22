@@ -78,13 +78,13 @@ namespace S.A_Vistorias_ocorrencias.View
 		protected global::System.Web.UI.WebControls.Label LabelStatus;
 
 		/// <summary>
-		/// Controle DropDownList1.
+		/// Controle dplStatus.
 		/// </summary>
 		/// <remarks>
 		/// Campo gerado automaticamente.
 		/// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+		protected global::System.Web.UI.WebControls.DropDownList dplStatus;
 
 		/// <summary>
 		/// Controle LabelIdResponsavel.

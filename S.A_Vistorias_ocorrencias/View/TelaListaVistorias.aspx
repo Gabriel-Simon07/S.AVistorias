@@ -60,16 +60,20 @@
         </tr>
            <tr>
                <td>
-                   <asp:Button ID="btnPesquisar" runat="server" Text="Pesquisar" />
+                   <asp:Button ID="btnPesquisar" runat="server" Text="Pesquisar" BorderColor="Black" />
                </td>
                <td>
-                   <asp:Button ID="btnInserirVistoria" runat="server" Text="Inserir Vistoria" OnClick="btnInserirVistoria_Click" />
+                   <asp:Button ID="btnInserirVistoria" runat="server" Text="Inserir Vistoria" OnClick="btnInserirVistoria_Click" BorderColor="Black" />
                </td>
            </tr>
       </table>          
         <asp:GridView ID="gdListaVistorias" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
 			<AlternatingRowStyle BackColor="White" />
 			<Columns>
+				<asp:ButtonField Text="Consulta" />
+				<asp:ButtonField Text="Atualiza" />
+				<asp:ButtonField Text="Exclui" />
+				<asp:ButtonField Text="Ocorrências" />
 				<asp:BoundField DataField="idVistoria" HeaderText="ID" />
 				<asp:BoundField DataField="status" HeaderText="Status" />
 				<asp:BoundField DataField="dataAbertura" HeaderText="Data Vistoria" />

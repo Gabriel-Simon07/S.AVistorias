@@ -14,6 +14,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <img alt="" src="../View/LogoGole_drinks.jpeg" style="height: 80px; width: 82px" />
         <table>
             <tr>
                 <td class="auto-style1">
@@ -53,14 +54,15 @@
                     <asp:Label ID="LabelDescricao" runat="server" Text="Descrição"></asp:Label>                
                 </td>
                 <td>
-                    <asp:TextBox ID="txtDescricao" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtDescricao" runat="server" Width="782px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Descrição precisa ser informada" ControlToValidate="txtDescricao" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
          </table>		        
-		<asp:Button ID="btnInserir" runat="server" Text="Inserir" />
-        <asp:Button ID="btnExcluir" runat="server" Text="Excluir" />
-        <asp:Button ID="btnAtualizar" runat="server" Text="Atualizar" />
-        <asp:Button ID="btnFechar" runat="server" Text="Fechar" />
+		<asp:Button ID="btnInserir" runat="server" Text="Inserir" BorderColor="Black" />
+        <asp:Button ID="btnExcluir" runat="server" Text="Excluir" BorderColor="Black" />
+        <asp:Button ID="btnAtualizar" runat="server" Text="Atualizar" BorderColor="Black" />
+        <asp:Button ID="btnFechar" runat="server" Text="Fechar" BorderColor="Black" />
     </form>
 	<div>
 	</div>

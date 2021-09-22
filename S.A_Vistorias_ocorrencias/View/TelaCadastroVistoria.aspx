@@ -33,7 +33,7 @@
                         <asp:Label ID="LabelStatus" runat="server" Text="Status"></asp:Label>
                     </td>
                     <td>
-                        <asp:DropDownList ID="DropDownList1" runat="server" Height="16px" Width="127px">
+                        <asp:DropDownList ID="dplStatus" runat="server" Height="19px" Width="127px">
 							<asp:ListItem>Aberto</asp:ListItem>
 							<asp:ListItem>Fechado</asp:ListItem>
 						</asp:DropDownList>
@@ -74,10 +74,10 @@
 			</table>
 			
 			<div>
-                <asp:Button ID="btnInserir" runat="server" Text="Inserir" OnClick="btnInserir_Click" />
-                <asp:Button ID="btnExcluir" runat="server" Text="Excluir" />
-                <asp:Button ID="btnAtualizar" runat="server" Text="Atualizar" />
-                <asp:Button ID="btnFechar" runat="server" Text="Fechar" />
+                <asp:Button ID="btnInserir" runat="server" Text="Inserir" OnClick="btnInserir_Click" BorderColor="Black" />
+                <asp:Button ID="btnExcluir" runat="server" Text="Excluir" BorderColor="Black" />
+                <asp:Button ID="btnAtualizar" runat="server" Text="Atualizar" BorderColor="Black" />
+                <asp:Button ID="btnFechar" runat="server" Text="Fechar" BorderColor="Black" />
 			</div>
         </div>
     </form>

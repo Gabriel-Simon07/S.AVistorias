@@ -10,7 +10,6 @@
 <body>
 <img src="Downloads\imagem\marreco" />
     <form id="form1" runat="server">
-		<div id="login">
           <img alt="" src="../View/LogoGole_drinks.jpeg" style="height: 87px; width: 90px" align="middle" />
             <table>
                 <tr>
@@ -19,6 +18,7 @@
                     </td>
                     <td>
                         <asp:TextBox ID="txtUsuario" runat="server"></asp:TextBox>
+                        
                     </td>
                 </tr>
                 <tr>
@@ -26,12 +26,12 @@
                         <asp:Label ID="LabelSenha" runat="server" Text="Senha"></asp:Label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtSenha" runat="server" TextMode="Password"></asp:TextBox>    
+                        <asp:TextBox ID="txtSenha" runat="server" TextMode="Password"></asp:TextBox>
+                       
                     </td>
                 </tr>
             </table>
-            <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" />
-       </div>
+            <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" BorderColor="Black" />
     </form>
     
 </body>
