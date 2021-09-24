@@ -14,17 +14,15 @@ namespace S.A_Vistorias_ocorrencias
 		public Int32 idVistoria { get; set; }
 		public string idUsuario { get; set; }
 		public string status { get; set; }
-		
 		public DateTime dataAbertura { get; set; }
 		public string imagem { get; set; }
 		public string descricao { get; set; }
 		public string endereco { get; set; }
 
 		public Vistoria() { }
-		//inserir imagem no construtor string imagem
+
 		public Vistoria(string idUsuario, string status, string descricao, string endereco, string imagem, DateTime data)
 		{
-			//INSERIR DATA NO CONSTRUTOR
 			this.idUsuario = idUsuario;
 			this.status = status;
 			this.dataAbertura = data;
@@ -43,7 +41,5 @@ namespace S.A_Vistorias_ocorrencias
 			this.imagem = !dadoLido.IsDBNull(5) ? dadoLido.GetString(5) : "";
 			this.descricao = !dadoLido.IsDBNull(6) ? dadoLido.GetString(6) : "";
 		}
-
-		
 	}
 }

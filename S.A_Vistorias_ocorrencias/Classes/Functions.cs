@@ -11,6 +11,36 @@ namespace S.A_Vistorias_ocorrencias
 {
 	public class Functions
 	{
+		public static Vistoria GetVistoriaById(Int32 idVistoria)
+		{
+			Vistoria vistoria = new Vistoria();
+
+			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
+
+			string query = $"SELECT  * FROM vistoria WHERE id_vistoria = '{idVistoria}' LIMIT 1";
+
+			MySqlCommand comando = new MySqlCommand(query, conexao);
+			try
+			{
+				conexao.Open();
+
+				MySqlDataReader dadoLido = comando.ExecuteReader();
+
+				while (dadoLido.Read())
+				{
+					vistoria = new Vistoria(dadoLido);
+				}
+			}
+			catch (SqlException se)
+			{
+				string erro = se.ToString();
+			}
+			finally
+			{
+				conexao.Close();
+			}
+			return vistoria;
+		}
 		public static string ObterConnectionString()
 		{
 			return "server=localhost;userid=root;sslmode=None;database=s_a_vistoria_e_ocorrencias";
@@ -85,37 +115,37 @@ namespace S.A_Vistorias_ocorrencias
 			return lista;
 		}
 
-		//public static List<Ocorrencia> TodasOcorrencias()
-		//{
-		//	List<Ocorrencia> lista = new List<Ocorrencia>();
+		public static List<Ocorrencia> TodasOcorrencias()
+		{
+			List<Ocorrencia> lista = new List<Ocorrencia>();
 
-		//	MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
+			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
 
-		//	string query = "SELECT * FROM ocorrencia";
+			string query = "SELECT * FROM ocorrencia";
 
-		//	MySqlCommand comando = new MySqlCommand(query, conexao);
+			MySqlCommand comando = new MySqlCommand(query, conexao);
 
-		//	try
-		//	{
-		//		conexao.Open();
+			try
+			{
+				conexao.Open();
 
-		//		MySqlDataReader dadoLido = comando.ExecuteReader();
+				MySqlDataReader dadoLido = comando.ExecuteReader();
 
-		//		while (dadoLido.Read())
-		//		{
-		//			lista.Add(new Ocorrencia(dadoLido));
-		//		}
-		//	}
-		//	catch(SqlException se)
-		//	{
-		//		string error = se.ToString();
-		//	}
-		//	finally
-		//	{
-		//		conexao.Close();
-		//	}
-		//	return lista;
-		//}
+				while (dadoLido.Read())
+				{
+					lista.Add(new Ocorrencia(dadoLido));
+				}
+			}
+			catch (SqlException se)
+			{
+				string error = se.ToString();
+			}
+			finally
+			{
+				conexao.Close();
+			}
+			return lista;
+		}
 
 		public static void SalvarOcorrencia(Ocorrencia ocorrencia)
 		{

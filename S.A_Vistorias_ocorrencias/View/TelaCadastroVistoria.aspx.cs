@@ -15,16 +15,45 @@ namespace S.A_Vistorias_ocorrencias.View
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			string login = string.Empty;
-
-			if (Session["Login"] != null)
+			if (!IsPostBack)
 			{
-				login = Session["Login"].ToString();
-			}
+				
+					ClientScript.RegisterStartupScript(this.GetType(), "script", "", true);
 
-			if (login == string.Empty)
-			{
-				Response.Redirect("TelaLogin.aspx");
+					string mode = Request.QueryString["mode"];
+
+					btnInserir.Visible = mode == "INS" ? true : false;
+					btnAtualizar.Visible = mode == "UPD" ? true : false;
+					btnExcluir.Visible = mode == "DEL" ? true : false;
+
+					if (mode != "INS")
+					{
+
+						Int32 id = Int32.Parse(Request.QueryString["id"].ToString());
+
+						Vistoria vistoria = Functions.GetVistoriaById(id);
+
+						txtIdVistoria.Text = vistoria.idVistoria.ToString();
+						txtData.Text = vistoria.dataAbertura.ToString("yyyy-MM-dd");
+						txtIdResponsavel.Text = vistoria.idUsuario.ToString();
+						//txtStatus.SelectedValue = vistoria.status; FORMA CORRETA DE USAR O STATUS
+						txtStatus.Text = vistoria.status;
+						txtDescricao.Text = vistoria.descricao;
+						txtEndereco.Text = vistoria.endereco;
+						//txtImagem. = vistoria.imagem;
+
+						if (mode != "UPD")
+						{
+							txtIdVistoria.Enabled = false;
+							txtData.Enabled = false;
+							txtIdResponsavel.Enabled = false;
+							txtStatus.Enabled = false;
+							txtDescricao.Enabled = false;
+							txtEndereco.Enabled = false;
+							txtImagem.Enabled = false;
+						}
+					}
+				
 			}
 		}
 
@@ -62,36 +91,7 @@ namespace S.A_Vistorias_ocorrencias.View
 			return vistoria;
 		}
 
-		public static Vistoria GetVistoriaComOcorrenciaById(Int32 idVistoria)
-		{
-			Vistoria vistoria = new Vistoria();
-
-			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
-
-			string query = $"SELECT  * FROM vistoria WHERE id_vistoria = '{idVistoria}' LIMIT 1";
-
-			MySqlCommand comando = new MySqlCommand(query, conexao);
-			try
-			{
-				conexao.Open();
-
-				MySqlDataReader dadoLido = comando.ExecuteReader();
-
-				while (dadoLido.Read())
-				{
-					vistoria = new Vistoria(dadoLido);
-				}
-			}
-			catch (SqlException se)
-			{
-				string erro = se.ToString();
-			}
-			finally
-			{
-				conexao.Close();
-			}
-			return vistoria;
-		}
+		
 
 		//public static void AtualizarVistoria(string idVistoria, string status, DateTime data, Int32 idUsuario, FileUpload imagem, string descricao, string endereco)
 		//{

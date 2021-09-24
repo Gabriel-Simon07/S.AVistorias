@@ -91,11 +91,14 @@
                                     Text="Ocorrência" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                    	<asp:BoundField HeaderText="ID" DataField="Id" />
-						<asp:BoundField DataField="Nome" HeaderText="Nome" />
-						<asp:BoundField DataField="Email" HeaderText="Email" />
-						<asp:ImageField DataImageUrlField="Foto" HeaderText="Foto">
+                    	<asp:BoundField HeaderText="ID" DataField="idVistoria" />
+						<asp:BoundField DataField="idUsuario" HeaderText="ID Usuário" />
+						<asp:BoundField DataField="status" HeaderText="Status" />
+						<asp:BoundField DataField="dataAbertura" HeaderText="Data" />
+						<asp:ImageField DataImageUrlField="imagem" HeaderText="Foto">
 						</asp:ImageField>
+						<asp:BoundField DataField="descricao" HeaderText="Descrição" />
+						<asp:BoundField DataField="endereco" HeaderText="Endereço" />
                     </Columns>
 			    <EditRowStyle BackColor="#7C6F57" />
 			    <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />

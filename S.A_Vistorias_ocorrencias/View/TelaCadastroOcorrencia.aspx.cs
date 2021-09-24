@@ -15,16 +15,39 @@ namespace S.A_Vistorias_ocorrencias.View
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			string login = string.Empty;
 
-			if (Session["Login"] != null)
+			if (!IsPostBack)
 			{
-				login = Session["Login"].ToString();
-			}
+				ClientScript.RegisterStartupScript(this.GetType(), "script", "", true);
 
-			if (login == string.Empty)
-			{
-				Response.Redirect("TelaLogin.aspx");
+				string mode = Request.QueryString["mode"];
+
+				btnInserir.Visible = mode == "INS" ? true : false;
+				btnAtualizar.Visible = mode == "UPD" ? true : false;
+				btnExcluir.Visible = mode == "DEL" ? true : false;
+
+				if (mode != "INS")
+				{
+
+					Int32 id = Int32.Parse(Request.QueryString["id"].ToString());
+
+					Vistoria vistoria = Functions.GetVistoriaById(id);
+
+					txtIdVistoria.Text = vistoria.idVistoria.ToString();
+					txtData.Text = vistoria.dataAbertura.ToString("yyyy-MM-dd");
+					txtIdOcorrencia.Text = vistoria.idVistoria.ToString();
+					dplTipo.SelectedValue = vistoria.status;
+					txtDescricao.Text = vistoria.descricao;
+
+					if (mode != "UPD")
+					{
+						txtIdVistoria.Enabled = false;
+						txtData.Enabled = false;
+						txtIdOcorrencia.Enabled = false;
+						txtDescricao.Enabled = false;
+						dplTipo.Enabled = false;
+					}
+				}
 			}
 		}
 
@@ -92,6 +115,11 @@ namespace S.A_Vistorias_ocorrencias.View
 			ocorrencia.tipo = tipo;
 
 			Functions.SalvarOcorrencia(ocorrencia);
+		}
+
+		protected void btnAtualizar_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }
