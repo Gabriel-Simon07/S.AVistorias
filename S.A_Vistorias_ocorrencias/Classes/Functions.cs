@@ -18,11 +18,11 @@ namespace S.A_Vistorias_ocorrencias
 
 		public static bool ValidaUsuario(string login, string senha)
 		{
-			Usuario usuario = ObterUsuarioPorId(login);
+			Usuario usuario = ObterUsuarioPorLogin(login);
 			return usuario.login == login && usuario.senha == senha;	
 		}
 
-		public static Usuario ObterUsuarioPorId(string login)
+		public static Usuario ObterUsuarioPorLogin(string login)
 		{
 			Usuario usuario = new Usuario();
 
@@ -53,37 +53,37 @@ namespace S.A_Vistorias_ocorrencias
 			return usuario;
 		}
 
-		//public static List<Vistoria> TodasVistorias()
-		//{
-		//	List<Vistoria> lista = new List<Vistoria>();
+		public static List<Vistoria> TodasVistorias()
+		{
+			List<Vistoria> lista = new List<Vistoria>();
 
-		//	MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
+			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
 
-		//	string query = "SELECT * FROM vistoria";
+			string query = "SELECT id_vistoria, id_usuario, status_vistoria, data_abertura, endereco, imagem_local, descricao_vistoria FROM vistoria";
 
-		//	MySqlCommand comando = new MySqlCommand(query, conexao);
+			MySqlCommand comando = new MySqlCommand(query, conexao);
 
-		//	try
-		//	{
-		//		conexao.Open();
+			try
+			{
+				conexao.Open();
 
-		//		MySqlDataReader dadoLido = comando.ExecuteReader();
+				MySqlDataReader dadoLido = comando.ExecuteReader();
 
-		//		while (dadoLido.Read())
-		//		{
-		//			lista.Add(new Vistoria(dadoLido));
-		//		}
-		//	}
-		//	catch (SqlException se)
-		//	{
-		//		string erro = se.ToString();
-		//	}
-		//	finally
-		//	{
-		//		conexao.Close();
-		//	}
-		//	return lista;
-		//}
+				while (dadoLido.Read())
+				{
+					lista.Add(new Vistoria(dadoLido));
+				}
+			}
+			catch (SqlException se)
+			{
+				string erro = se.ToString();
+			}
+			finally
+			{
+				conexao.Close();
+			}
+			return lista;
+		}
 
 		//public static List<Ocorrencia> TodasOcorrencias()
 		//{
@@ -152,7 +152,7 @@ namespace S.A_Vistorias_ocorrencias
 			//INSERIR O CAMPO DE DATA NO BANCO, TIREI DO SCRIPT
 			//inserir o campo de imagem, @imagem_local
 			string query = "INSERT INTO vistoria (id_usuario, status_vistoria, endereco, " +
-				" descricao_vistoria) VALUES (@id_usuario, @status_vistoria, @endereco, @descricao_vistoria)";
+				" descricao_vistoria, imagem_local, data_abertura) VALUES (@id_usuario, @status_vistoria, @endereco, @descricao_vistoria, @imagem_local, @data_abertura)";
 
 			MySqlCommand comando = new MySqlCommand(query, conexao);
 
@@ -162,11 +162,10 @@ namespace S.A_Vistorias_ocorrencias
 
 				comando.Parameters.AddWithValue("@id_usuario", vistoria.idUsuario);
 				comando.Parameters.AddWithValue("@status_vistoria", vistoria.status);
-				//comando.Parameters.AddWithValue("@data_abertura", vistoria.dataAbertura);
+				comando.Parameters.AddWithValue("@data_abertura", vistoria.dataAbertura);
 				comando.Parameters.AddWithValue("@endereco", vistoria.endereco);
-				//comando.Parameters.AddWithValue("@imagem_local", vistoria.imagem);
+				comando.Parameters.AddWithValue("@imagem_local", vistoria.imagem);
 				comando.Parameters.AddWithValue("@descricao_vistoria", vistoria.descricao);
-				//comando.ExecuteNonQuery();
 				comando.ExecuteNonQuery();
 			}
 			catch (SqlException se)
@@ -210,30 +209,31 @@ namespace S.A_Vistorias_ocorrencias
 		{
 			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
 
-			//string query = $"UPDATE vistoria set id_usuario = @id_usuario, status_vistoria = @status_vistoria, data_abertura = @data_abertura, endereco = @endereco, " +
-			//	"imagem_local = @imagem_local, descricao_vistoria = @descricao_vistoria WHERE id_vistoria = '{}'"
+			string query = $"UPDATE vistoria set id_usuario = @id_usuario, status_vistoria = @status_vistoria, data_abertura = @data_abertura, endereco = @endereco, " +
+				"imagem_local = @imagem_local, descricao_vistoria = @descricao_vistoria WHERE id_vistoria = @id";
 
-			//MySqlCommand comando = new MySqlCommand(query, conexao);
+			MySqlCommand comando = new MySqlCommand(query, conexao);
 
-			//try
-			//{
-			//	conexao.Open();
-			//	comando.Parameters.AddWithValue("@id_usuario", vistoria.idUsuario);
-			//	comando.Parameters.AddWithValue("@status_vistoria", vistoria.status);
-			//	comando.Parameters.AddWithValue("@data_abertura", vistoria.dataAbertura);
-			//	comando.Parameters.AddWithValue("@endereco", vistoria.endereco);
-			//	comando.Parameters.AddWithValue("@imagem_local", vistoria.imagem);
-			//	comando.Parameters.AddWithValue("@descricao_vistoria", vistoria.descricao);
-			//	comando.ExecuteNonQuery();
-			//}
-			//catch (SqlException se)
-			//{
-			//	string erro = se.ToString();
-			//}
-			//finally
-			//{
-			//	conexao.Close();
-			//}
+			try
+			{
+				conexao.Open();
+				comando.Parameters.AddWithValue("@id", vistoria.idVistoria);
+				comando.Parameters.AddWithValue("@id_usuario", vistoria.idUsuario);
+				comando.Parameters.AddWithValue("@status_vistoria", vistoria.status);
+				comando.Parameters.AddWithValue("@data_abertura", vistoria.dataAbertura);
+				comando.Parameters.AddWithValue("@endereco", vistoria.endereco);
+				comando.Parameters.AddWithValue("@imagem_local", vistoria.imagem);
+				comando.Parameters.AddWithValue("@descricao_vistoria", vistoria.descricao);
+				comando.ExecuteNonQuery();
+			}
+			catch (SqlException se)
+			{
+				string erro = se.ToString();
+			}
+			finally
+			{
+				conexao.Close();
+			}
 		}
 		}
 }

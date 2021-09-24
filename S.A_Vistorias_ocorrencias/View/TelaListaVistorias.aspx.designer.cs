@@ -150,6 +150,15 @@ namespace S.A_Vistorias_ocorrencias.View
 		protected global::System.Web.UI.WebControls.Button btnInserirVistoria;
 
 		/// <summary>
+		/// Controle PanelListaVistorias.
+		/// </summary>
+		/// <remarks>
+		/// Campo gerado automaticamente.
+		/// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Panel PanelListaVistorias;
+
+		/// <summary>
 		/// Controle gdListaVistorias.
 		/// </summary>
 		/// <remarks>

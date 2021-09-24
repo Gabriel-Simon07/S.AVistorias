@@ -15,7 +15,17 @@ namespace S.A_Vistorias_ocorrencias.View
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			string login = string.Empty;
 
+			if (Session["Login"] != null)
+			{
+				login = Session["Login"].ToString();
+			}
+
+			if (login == string.Empty)
+			{
+				Response.Redirect("TelaLogin.aspx");
+			}
 		}
 
 		protected void btnInserir_Click(object sender, EventArgs e)
@@ -23,29 +33,33 @@ namespace S.A_Vistorias_ocorrencias.View
 			// DateTime dataAtual = DateTime.Now;
 			//INSERIR DATA NO CONSTRUTOR DO CADASTRO
 			//inserir imagem no construtor txtImagem
-			Vistoria vistoria = new Vistoria();
-			CadastrarVistoria(txtIdResponsavel.Text, dplStatus.Text, txtDescricao.Text, txtEndereco.Text);
+			
+			Vistoria vistoria = CriarVistoria();
 			Functions.SalvarVistoria(vistoria);
 			
 		}
 
 		//INSERIR DATA NO CONSTRUTOR DO CADASTRO
-		private void CadastrarVistoria(string idResponsavel, string status, string descricao, string endereco)
+		private Vistoria CriarVistoria()
 		{
-			//string caminhoArquivo = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["caminhoArquivo"] + @"\" + imagem.FileName;
-			//txtImagem.SaveAs(caminhoArquivo);
-
 			Vistoria vistoria = new Vistoria();
-			
-			vistoria.idUsuario = idResponsavel;
-			vistoria.status = status;
-			//INSERIR DATA NO CONSTRUTOR DO CADASTRO
-			//vistoria.dataAbertura = data;
-			vistoria.descricao = descricao;
-			vistoria.endereco = endereco;
-			//vistoria.imagem = System.Configuration.ConfigurationManager.AppSettings
-			//	["caminhoArquivo"].Replace(@"\", "/") + "/" + imagem.FileName;
-			//Functions.SalvarVistoria(vistoria);
+
+			string caminhoArquivo = string.Empty;
+
+			if (txtImagem.HasFile) {
+				caminhoArquivo = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["caminhoArquivo"] + @"\" + txtImagem.FileName;
+				txtImagem.SaveAs(caminhoArquivo);
+			}
+
+			vistoria.idUsuario = txtIdResponsavel.Text;
+			vistoria.status = txtStatus.Text;
+			vistoria.dataAbertura = DateTime.Parse(txtData.Text);
+			vistoria.descricao = txtDescricao.Text;
+			vistoria.endereco = txtEndereco.Text;
+			vistoria.imagem = System.Configuration.ConfigurationManager.AppSettings
+				["caminhoArquivo"].Replace(@"\", "/") + "/" + txtImagem.FileName;
+
+			return vistoria;
 		}
 
 		public static Vistoria GetVistoriaComOcorrenciaById(Int32 idVistoria)
@@ -102,9 +116,13 @@ namespace S.A_Vistorias_ocorrencias.View
 		//	Functions.TodasVistorias().Remove(vistoria);
 		//}
 
-		public static void GetListVistoria()
-		{
+		
 
+		protected void btnAtualizar_Click(object sender, EventArgs e)
+		{
+			Vistoria vistoria = CriarVistoria();
+			Functions.AtualizarVistoria(vistoria);
+			Response.Redirect("TelaListaVistorias.aspx");
 		}
 	}
 }
