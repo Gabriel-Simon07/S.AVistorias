@@ -39,7 +39,7 @@ namespace S.A_Vistorias_ocorrencias.View
 
 		protected void btnInserirVistoria_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("TelaCadastroVistoria.aspx");
+			Response.Redirect("TelaCadastroVistoria.aspx?mode=INS");
 		}
 
 		protected void GridViewUsuarios_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -53,7 +53,17 @@ namespace S.A_Vistorias_ocorrencias.View
 
 			if (e.CommandName == "Visualizar")
 			{
-				Response.Redirect($"TelaCadastroVistoria.aspx?acao=atualizar&id_vistoria={id_vistoria}");
+				Response.Redirect($"TelaCadastroVistoria.aspx?mode=visualizar&id_vistoria={id_vistoria}");
+			}
+
+			if(e.CommandName == "Ocorrencia")
+			{
+				Response.Redirect($"TelaListaOcorrencias.aspx?mode=ocorrencia&id_vistoria={id_vistoria}");
+			}
+
+			if(e.CommandName == "Alterar")
+			{
+				Response.Redirect($"TelaCadastroVistoria.aspx?mode=alterar&id_vistoria={id_vistoria}");
 			}
 		}
 	}

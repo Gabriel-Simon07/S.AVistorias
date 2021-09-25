@@ -15,9 +15,21 @@ namespace S.A_Vistorias_ocorrencias.View
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			if (!IsPostBack)
+			string login = string.Empty;
+
+			if (Session["Login"] != null)
 			{
-				
+				login = Session["Login"].ToString();
+			}
+
+			if (login == string.Empty)
+			{
+				Response.Redirect("TelaLogin.aspx");
+			}
+			else
+			{
+				if (!IsPostBack)
+				{
 					ClientScript.RegisterStartupScript(this.GetType(), "script", "", true);
 
 					string mode = Request.QueryString["mode"];
@@ -35,37 +47,31 @@ namespace S.A_Vistorias_ocorrencias.View
 
 						txtIdVistoria.Text = vistoria.idVistoria.ToString();
 						txtData.Text = vistoria.dataAbertura.ToString("yyyy-MM-dd");
-						txtIdResponsavel.Text = vistoria.idUsuario.ToString();
-						//txtStatus.SelectedValue = vistoria.status; FORMA CORRETA DE USAR O STATUS
-						txtStatus.Text = vistoria.status;
+						txtStatus.Text = vistoria.status.ToString();
+						txtIdResponsavel.Text = vistoria.idUsuario;
 						txtDescricao.Text = vistoria.descricao;
 						txtEndereco.Text = vistoria.endereco;
-						//txtImagem. = vistoria.imagem;
 
 						if (mode != "UPD")
 						{
 							txtIdVistoria.Enabled = false;
 							txtData.Enabled = false;
-							txtIdResponsavel.Enabled = false;
 							txtStatus.Enabled = false;
 							txtDescricao.Enabled = false;
+							txtIdResponsavel.Enabled = false;
 							txtEndereco.Enabled = false;
-							txtImagem.Enabled = false;
 						}
 					}
-				
+				}
 			}
+		
 		}
 
 		protected void btnInserir_Click(object sender, EventArgs e)
-		{
-			// DateTime dataAtual = DateTime.Now;
-			//INSERIR DATA NO CONSTRUTOR DO CADASTRO
-			//inserir imagem no construtor txtImagem
-			
+		{ 
 			Vistoria vistoria = CriarVistoria();
 			Functions.SalvarVistoria(vistoria);
-			
+			Response.Redirect("TelaListaVistorias.aspx");
 		}
 
 		//INSERIR DATA NO CONSTRUTOR DO CADASTRO

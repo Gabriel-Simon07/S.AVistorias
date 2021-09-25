@@ -15,78 +15,60 @@ namespace S.A_Vistorias_ocorrencias.View
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			string login = string.Empty;
 
-			if (!IsPostBack)
+			if (Session["Login"] != null)
 			{
-				ClientScript.RegisterStartupScript(this.GetType(), "script", "", true);
+				login = Session["Login"].ToString();
+			}
 
-				string mode = Request.QueryString["mode"];
-
-				btnInserir.Visible = mode == "INS" ? true : false;
-				btnAtualizar.Visible = mode == "UPD" ? true : false;
-				btnExcluir.Visible = mode == "DEL" ? true : false;
-
-				if (mode != "INS")
+			if (login == string.Empty)
+			{
+				Response.Redirect("TelaLogin.aspx");
+			}
+			else
+			{
+				if (!IsPostBack)
 				{
+					ClientScript.RegisterStartupScript(this.GetType(), "script", "", true);
 
-					Int32 id = Int32.Parse(Request.QueryString["id"].ToString());
+					string mode = Request.QueryString["mode"];
 
-					Vistoria vistoria = Functions.GetVistoriaById(id);
+					btnInserir.Visible = mode == "INS" ? true : false;
+					btnAtualizar.Visible = mode == "UPD" ? true : false;
+					btnExcluir.Visible = mode == "DEL" ? true : false;
 
-					txtIdVistoria.Text = vistoria.idVistoria.ToString();
-					txtData.Text = vistoria.dataAbertura.ToString("yyyy-MM-dd");
-					txtIdOcorrencia.Text = vistoria.idVistoria.ToString();
-					dplTipo.SelectedValue = vistoria.status;
-					txtDescricao.Text = vistoria.descricao;
-
-					if (mode != "UPD")
+					if (mode != "INS")
 					{
-						txtIdVistoria.Enabled = false;
-						txtData.Enabled = false;
-						txtIdOcorrencia.Enabled = false;
-						txtDescricao.Enabled = false;
-						dplTipo.Enabled = false;
+
+						Int32 id = Int32.Parse(Request.QueryString["id"].ToString());
+						//CORRIGIR, OBTER LISTA DE OCORRENCIAS DA VISTORIA
+						//Vistoria vistoria = Functions.getOcorrenciaByIdVistoria();
+
+						//txtIdVistoria.Text = vistoria.idVistoria.ToString();
+						//txtData.Text = vistoria.dataAbertura.ToString("yyyy-MM-dd");
+						//txtIdOcorrencia.Text = vistoria.idVistoria.ToString();
+						//dplTipo.SelectedValue = vistoria.status;
+						//txtDescricao.Text = vistoria.descricao;
+
+						if (mode != "UPD")
+						{
+							txtIdVistoria.Enabled = false;
+							txtData.Enabled = false;
+							txtIdOcorrencia.Enabled = false;
+							txtDescricao.Enabled = false;
+							dplTipo.Enabled = false;
+						}
 					}
 				}
 			}
 		}
 
-		public static Ocorrencia getOcorrenciaByIdVistoria(Int32 idVistoria)
-		{
-			Ocorrencia ocorrencia = new Ocorrencia();
-
-			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
-
-			string query = $"SELECT  * FROM ocorrencia WHERE id_vistoria = '{idVistoria}' LIMIT 1";
-
-			MySqlCommand comando = new MySqlCommand(query, conexao);
-
-			try
-			{
-				conexao.Open();
-
-				MySqlDataReader dadoLido = comando.ExecuteReader();
-
-				while (dadoLido.Read())
-				{
-					ocorrencia = (new Ocorrencia(dadoLido));
-				}
-
-			}
-			catch (SqlException se)
-			{
-				string messageError = se.ToString();
-			}
-			finally
-			{
-				conexao.Close();
-			}
-			return ocorrencia;
-		}
+		
 
 		public static void atualizarOcorrencia(string idOcorrencia, string descricao, Enum tipo)
 		{
-			Ocorrencia ocorrencia = getOcorrenciaByIdVistoria(Int32.Parse(idOcorrencia));
+			Ocorrencia ocorrencia = Functions.getOcorrenciaByIdVistoria(Int32.Parse(idOcorrencia));
 			ocorrencia.descricao = descricao;
 			ocorrencia.tipo = tipo;
 
@@ -95,7 +77,7 @@ namespace S.A_Vistorias_ocorrencias.View
 
 		public static void deletarOcorrenciaById(string idOcorrencia)
 		{
-			Ocorrencia ocorrencia = getOcorrenciaByIdVistoria(Int32.Parse(idOcorrencia));
+			Ocorrencia ocorrencia = Functions.getOcorrenciaByIdVistoria(Int32.Parse(idOcorrencia));
 
 			//Functions.TodasOcorrencias().Remove(ocorrencia);	
 		}

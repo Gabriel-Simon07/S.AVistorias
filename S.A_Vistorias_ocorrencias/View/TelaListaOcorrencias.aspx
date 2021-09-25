@@ -16,7 +16,7 @@
                     <asp:Label ID="LabelTipo" runat="server" Text="Tipo"></asp:Label>
                 </td>
                 <td>
-                    <asp:DropDownList ID="DropDownList1" runat="server" Height="19px" Width="125px">
+                    <asp:DropDownList ID="dptTipo" runat="server" Height="19px" Width="125px">
 					</asp:DropDownList>
                 </td>
             </tr>
@@ -56,7 +56,7 @@
     </form>
 	<div>
         <asp:Button ID="btnPesquisarOcorrencia" runat="server" Text="Pesquisar" BorderColor="Black" />
-        <asp:Button ID="btnInserir" runat="server" Text="Inserir Ocorrências" BorderColor="Black" />
+        <asp:Button ID="btnInserir" runat="server" Text="Inserir Ocorrências" BorderColor="Black" OnClick="btnInserir_Click" />
 	</div>
 	<div>
         <asp:GridView ID="gvListaOcorrencias" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">

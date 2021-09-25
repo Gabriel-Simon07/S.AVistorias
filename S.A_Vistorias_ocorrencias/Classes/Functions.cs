@@ -115,19 +115,20 @@ namespace S.A_Vistorias_ocorrencias
 			return lista;
 		}
 
-		public static List<Ocorrencia> TodasOcorrencias()
+		public static List<Ocorrencia> TodasOcorrencias(Int32 id_vistoria)
 		{
 			List<Ocorrencia> lista = new List<Ocorrencia>();
 
 			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
 
-			string query = "SELECT * FROM ocorrencia";
+			string query = "SELECT * FROM ocorrencia WHERE id_vistoria = @id_vistoria";
 
 			MySqlCommand comando = new MySqlCommand(query, conexao);
 
 			try
 			{
 				conexao.Open();
+				comando.Parameters.AddWithValue("@id_vistoria", id_vistoria);
 
 				MySqlDataReader dadoLido = comando.ExecuteReader();
 
@@ -179,8 +180,6 @@ namespace S.A_Vistorias_ocorrencias
 		{
 			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
 
-			//INSERIR O CAMPO DE DATA NO BANCO, TIREI DO SCRIPT
-			//inserir o campo de imagem, @imagem_local
 			string query = "INSERT INTO vistoria (id_usuario, status_vistoria, endereco, " +
 				" descricao_vistoria, imagem_local, data_abertura) VALUES (@id_usuario, @status_vistoria, @endereco, @descricao_vistoria, @imagem_local, @data_abertura)";
 
@@ -240,14 +239,14 @@ namespace S.A_Vistorias_ocorrencias
 			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
 
 			string query = $"UPDATE vistoria set id_usuario = @id_usuario, status_vistoria = @status_vistoria, data_abertura = @data_abertura, endereco = @endereco, " +
-				"imagem_local = @imagem_local, descricao_vistoria = @descricao_vistoria WHERE id_vistoria = @id";
+				"imagem_local = @imagem_local, descricao_vistoria = @descricao_vistoria WHERE id_vistoria = @id_vistoria";
 
 			MySqlCommand comando = new MySqlCommand(query, conexao);
 
 			try
 			{
 				conexao.Open();
-				comando.Parameters.AddWithValue("@id", vistoria.idVistoria);
+				comando.Parameters.AddWithValue("@id_vistoria", vistoria.idVistoria);
 				comando.Parameters.AddWithValue("@id_usuario", vistoria.idUsuario);
 				comando.Parameters.AddWithValue("@status_vistoria", vistoria.status);
 				comando.Parameters.AddWithValue("@data_abertura", vistoria.dataAbertura);
@@ -265,5 +264,39 @@ namespace S.A_Vistorias_ocorrencias
 				conexao.Close();
 			}
 		}
+
+		public static Ocorrencia getOcorrenciaByIdVistoria(Int32 idVistoria)
+		{
+			Ocorrencia ocorrencia = new Ocorrencia();
+
+			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
+
+			string query = $"SELECT  * FROM ocorrencia WHERE id_vistoria = '{idVistoria}' LIMIT 1";
+
+			MySqlCommand comando = new MySqlCommand(query, conexao);
+
+			try
+			{
+				conexao.Open();
+
+				MySqlDataReader dadoLido = comando.ExecuteReader();
+
+				while (dadoLido.Read())
+				{
+					ocorrencia = (new Ocorrencia(dadoLido));
+				}
+
+			}
+			catch (SqlException se)
+			{
+				string messageError = se.ToString();
+			}
+			finally
+			{
+				conexao.Close();
+			}
+			return ocorrencia;
 		}
+	}
+
 }
