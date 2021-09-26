@@ -42,14 +42,14 @@ namespace S.A_Vistorias_ocorrencias.View
 			Response.Redirect("TelaCadastroVistoria.aspx?mode=INS");
 		}
 
-		protected void GridViewUsuarios_RowCommand(object sender, GridViewCommandEventArgs e)
+		protected void gdListaVistorias_RowCommand(object sender, GridViewCommandEventArgs e)
 		{
 
-			int indiceLinha = Convert.ToInt32(e.CommandName);
+			int indiceLinha = Convert.ToInt32(e.CommandArgument);
 
 			GridViewRow linha = gdListaVistorias.Rows[indiceLinha];
 
-			Int32 id_vistoria = int.Parse(linha.Cells[1].Text);
+			Int32 id_vistoria = Int32.Parse(linha.Cells[1].Text);
 
 			if (e.CommandName == "Visualizar")
 			{
@@ -63,7 +63,7 @@ namespace S.A_Vistorias_ocorrencias.View
 
 			if(e.CommandName == "Alterar")
 			{
-				Response.Redirect($"TelaCadastroVistoria.aspx?mode=alterar&id_vistoria={id_vistoria}");
+				Response.Redirect($"TelaCadastroVistoria.aspx?mode=UPD&id_vistoria={id_vistoria}");
 			}
 		}
 	}

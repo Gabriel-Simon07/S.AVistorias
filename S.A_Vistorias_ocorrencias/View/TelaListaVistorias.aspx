@@ -68,9 +68,9 @@
            </tr>
       </table>          
         <asp:Panel ID="PanelListaVistorias" runat="server" GroupingText="Lista de Vistorias">
-            <asp:GridView ID="gdListaVistorias" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <asp:GridView ID="gdListaVistorias" runat="server" OnRowCommand="gdListaVistorias_RowCommand" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False">
 			    <AlternatingRowStyle BackColor="White" />
-<Columns>
+                    <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
                                  <asp:Button ID="btnVisualizar" runat="server"
@@ -86,7 +86,7 @@
                                   CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                   Text="Excluir" />
                                 <asp:Button ID="btnOcorrencia" runat="server"
-                                    CommandName="ocorrencia"
+                                    CommandName="Ocorrencia"
                                     CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                     Text="Ocorrência" />
                             </ItemTemplate>

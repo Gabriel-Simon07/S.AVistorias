@@ -47,7 +47,7 @@ namespace S.A_Vistorias_ocorrencias.View
 
 						txtIdVistoria.Text = vistoria.idVistoria.ToString();
 						txtData.Text = vistoria.dataAbertura.ToString("yyyy-MM-dd");
-						txtStatus.Text = vistoria.status.ToString();
+						ddlStatus.Text = vistoria.status.ToString();
 						txtIdResponsavel.Text = vistoria.idUsuario;
 						txtDescricao.Text = vistoria.descricao;
 						txtEndereco.Text = vistoria.endereco;
@@ -56,7 +56,7 @@ namespace S.A_Vistorias_ocorrencias.View
 						{
 							txtIdVistoria.Enabled = false;
 							txtData.Enabled = false;
-							txtStatus.Enabled = false;
+							ddlStatus.Enabled = false;
 							txtDescricao.Enabled = false;
 							txtIdResponsavel.Enabled = false;
 							txtEndereco.Enabled = false;
@@ -87,7 +87,7 @@ namespace S.A_Vistorias_ocorrencias.View
 			}
 
 			vistoria.idUsuario = txtIdResponsavel.Text;
-			vistoria.status = txtStatus.Text;
+			vistoria.status = ddlStatus.Text;
 			vistoria.dataAbertura = DateTime.Parse(txtData.Text);
 			vistoria.descricao = txtDescricao.Text;
 			vistoria.endereco = txtEndereco.Text;
@@ -97,37 +97,68 @@ namespace S.A_Vistorias_ocorrencias.View
 			return vistoria;
 		}
 
-		
 
-		//public static void AtualizarVistoria(string idVistoria, string status, DateTime data, Int32 idUsuario, FileUpload imagem, string descricao, string endereco)
-		//{
-		//	//string caminhoArquivo = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["caminhoArquivo"] + @"\" + imagem.FileName;
-		//	//inputFoto.SaveAs(caminhoArquivo);
 
-		//	Vistoria vistoria = GetVistoriaComOcorrenciaById(Int32.Parse(idVistoria));
 
-		//	vistoria.status = status;
-		//	vistoria.dataAbertura = data;
-		//	vistoria.idUsuario = idUsuario;
-		//	vistoria.descricao = descricao;
-		//	vistoria.imagem = System.Configuration.ConfigurationManager.AppSettings
-		//		["caminhoArquivo"].Replace(@"\", "/") + "/" + imagem.FileName;
-		//	Functions.AtualizarVistoria(vistoria);
-		//}
 
-		//public static void DeletarVistoriaById(string idVistoria)
-		//{
-		//	Vistoria vistoria = GetVistoriaComOcorrenciaById(Int32.Parse(idVistoria));
 
-		//	Functions.TodasVistorias().Remove(vistoria);
-		//}
 
-		
+
+		public static void AtualizarVistoria(string idVistoria, string status, DateTime data, string idUsuario, FileUpload imagem, string descricao, string endereco)
+		{
+			
+
+			Vistoria vistoria = Functions.GetVistoriaById(Int32.Parse(idVistoria));
+
+			vistoria.status = status;
+			vistoria.dataAbertura = data;
+			vistoria.idUsuario = idUsuario;
+			vistoria.descricao = descricao;
+			vistoria.endereco = endereco;
+			vistoria.imagem = System.Configuration.ConfigurationManager.AppSettings
+				["caminhoArquivo"].Replace(@"\", "/") + "/" + imagem.FileName;
+			Functions.AtualizarVistoria(vistoria);
+		}
+
+		public static void DeletarVistoriaById(string idVistoria)
+		{
+			Vistoria vistoria = Functions.GetVistoriaById(Int32.Parse(idVistoria));
+
+			Functions.TodasVistorias().Remove(vistoria);
+		}
+
+
 
 		protected void btnAtualizar_Click(object sender, EventArgs e)
 		{
-			Vistoria vistoria = CriarVistoria();
+			if (txtImagem.HasFile)
+			{
+				string caminhoArquivo = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["caminhoArquivo"] + @"\" + txtImagem.FileName;
+				txtImagem.SaveAs(caminhoArquivo);
+				string arquivoUrl = System.Configuration.ConfigurationManager.AppSettings["caminhoArquivo"].Replace(@"\", "/") + "/" + txtImagem.FileName;
+			}
+
+			Vistoria vistoria = new Vistoria(txtIdResponsavel.Text, ddlStatus.SelectedValue, txtDescricao.Text, txtEndereco.Text,txtImagem.FileName ,DateTime.Parse(txtData.Text));
+
+			//vistoria = CriarVistoria();
 			Functions.AtualizarVistoria(vistoria);
+			Response.Redirect("TelaListaVistorias.aspx");
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+		protected void btnFechar_Click(object sender, EventArgs e)
+		{
 			Response.Redirect("TelaListaVistorias.aspx");
 		}
 	}

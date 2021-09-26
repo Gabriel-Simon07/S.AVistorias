@@ -17,7 +17,7 @@
                         <asp:Label ID="LabelIdVistoria" runat="server" Text="ID Vistoria"></asp:Label>
 					</td>
                     <td>
-                        <asp:TextBox ID="txtIdVistoria" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtIdVistoria" ReadOnly="True" runat="server"></asp:TextBox>
                     </td>
 				</tr>
                 <tr>
@@ -25,7 +25,7 @@
                         <asp:Label ID="LabelData" runat="server" Text="Data"></asp:Label>
 					</td>
                     <td>
-                        <asp:TextBox ID="txtData" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtData" TextMode="Date" runat="server"></asp:TextBox>
                     </td>
 				</tr>                
                 <tr>
@@ -33,7 +33,10 @@
                         <asp:Label ID="LabelStatus" runat="server" Text="Status"></asp:Label>
                     </td>
                     <td>
-                         <asp:TextBox ID="txtStatus" runat="server"></asp:TextBox>
+                         <asp:DropDownList ID="ddlStatus" runat="server">
+							 <asp:ListItem Value="Aberto">Aberto</asp:ListItem>
+                            <asp:ListItem Value="Aberto">Fechado</asp:ListItem>
+                         </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
@@ -74,7 +77,7 @@
                 <asp:Button ID="btnInserir" runat="server" Text="Inserir" OnClick="btnInserir_Click" BorderColor="Black" />
                 <asp:Button ID="btnExcluir" runat="server" Text="Excluir" BorderColor="Black" />
                 <asp:Button ID="btnAtualizar" runat="server" Text="Atualizar" BorderColor="Black" OnClick="btnAtualizar_Click" />
-                <asp:Button ID="btnFechar" runat="server" Text="Fechar" BorderColor="Black" />
+                <asp:Button ID="btnFechar" runat="server" Text="Fechar" BorderColor="Black" OnClick="btnFechar_Click" />
 			</div>
         </div>
     </form>

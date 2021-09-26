@@ -25,10 +25,10 @@ namespace S.A_Vistorias_ocorrencias
 		{
 			this.idUsuario = idUsuario;
 			this.status = status;
-			this.dataAbertura = data;
-			this.imagem = imagem;
 			this.descricao = descricao;
 			this.endereco = endereco;
+			this.imagem = imagem;
+			this.dataAbertura = data;
 		}
 
 		public Vistoria(MySqlDataReader dadoLido)
