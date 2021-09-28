@@ -28,6 +28,7 @@ namespace S.A_Vistorias_ocorrencias.View
 				dptTipo.Items.Add("Patrimonial");
 
 				Int32 id_vistoria = Int32.Parse(Request.QueryString["id_vistoria"]);
+				txtIdVistoria.Text = id_vistoria.ToString();
 				List<Ocorrencia> ocorrencias = Functions.TodasOcorrencias(id_vistoria);
 				gdListaOcorrencias.DataSource = ocorrencias;
 				gdListaOcorrencias.DataBind();

@@ -37,7 +37,7 @@
                     <asp:Label ID="LabelData" runat="server" Text="Data"></asp:Label>                
                 </td>
                 <td>
-                    <asp:TextBox ID="txtData" ReadOnly="true" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtData" TextMode="Date" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -46,6 +46,8 @@
                 </td>
                 <td>
                     <asp:DropDownList ID="dplTipo" runat="server" Height="16px" Width="126px">
+                        <asp:ListItem>Ambiental</asp:ListItem>
+                        <asp:ListItem>Patrimonial</asp:ListItem>
 					</asp:DropDownList>
                 </td>
             </tr>
