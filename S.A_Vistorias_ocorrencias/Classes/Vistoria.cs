@@ -34,8 +34,8 @@ namespace S.A_Vistorias_ocorrencias
 
 		public Vistoria(MySqlDataReader dadoLido)
 		{
-			this.idUsuario = !dadoLido.IsDBNull(0) ? dadoLido.GetString(0) : "";
-			this.idVistoria = !dadoLido.IsDBNull(1) ? dadoLido.GetInt32(1) : 0;
+			this.idVistoria = !dadoLido.IsDBNull(0) ? dadoLido.GetInt32(0) : 0;
+			this.idUsuario = !dadoLido.IsDBNull(1) ? dadoLido.GetString(1) : "";
 			this.status = !dadoLido.IsDBNull(2) ? dadoLido.GetString(2) : "";
 			this.dataAbertura = !dadoLido.IsDBNull(3) ? dadoLido.GetDateTime(3) : DateTime.MinValue;
 			this.endereco = !dadoLido.IsDBNull(4) ? dadoLido.GetString(4) : "";

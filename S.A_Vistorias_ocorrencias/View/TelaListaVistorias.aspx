@@ -84,14 +84,14 @@
                                   CommandName="Excluir"
                                   CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                   Text="Excluir" />
-                                <asp:Button ID="btnOcorrencia" runat="server"
+                                <asp:Button ID="btn" runat="server"
                                     CommandName="Ocorrencia"
                                     CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                     Text="Ocorrência" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                    	<asp:BoundField HeaderText="ID" DataField="idUsuario" />
-						<asp:BoundField DataField="idVistoria" HeaderText="ID Usuário" />
+                    	<asp:BoundField DataField="idVistoria" HeaderText="ID Vistoria" />
+                    	<asp:BoundField DataField="idUsuario" HeaderText="ID Usuario" />
 						<asp:BoundField DataField="status" HeaderText="Status" />
 						<asp:BoundField DataField="dataAbertura" HeaderText="Data" />
 						<asp:ImageField DataImageUrlField="imagem" HeaderText="Foto">

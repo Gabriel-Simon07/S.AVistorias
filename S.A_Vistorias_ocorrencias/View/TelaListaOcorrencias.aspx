@@ -53,9 +53,8 @@
                 </td>
             </tr>
          </table>
-    </form>
-	<div>
-        <asp:Button ID="btnPesquisarOcorrencia" runat="server" Text="Pesquisar" BorderColor="Black" />
+        <div>
+        <asp:Button ID="btnPesquisarOcorrencia"  Text="Pesquisar" BorderColor="Black" runat="server" />
         <asp:Button ID="btnInserir" runat="server" Text="Inserir Ocorrências" BorderColor="Black" OnClick="btnInserir_Click" />
 	</div>
 	<div>
@@ -95,5 +94,7 @@
 			    <SortedDescendingHeaderStyle BackColor="#002876" />
 		    </asp:GridView>
 	</div>
+    </form>
+	
 </body>
 </html>

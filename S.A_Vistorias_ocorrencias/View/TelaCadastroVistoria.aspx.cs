@@ -64,7 +64,7 @@ namespace S.A_Vistorias_ocorrencias.View
 					}
 				}
 			}
-
+		
 		}
 
 		protected void btnInserir_Click(object sender, EventArgs e)
@@ -96,8 +96,7 @@ namespace S.A_Vistorias_ocorrencias.View
 
 			string caminhoArquivo = string.Empty;
 
-			if (txtImagem.HasFile)
-			{
+			if (txtImagem.HasFile) {
 				caminhoArquivo = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["caminhoArquivo"] + @"\" + txtImagem.FileName;
 				txtImagem.SaveAs(caminhoArquivo);
 			}
@@ -122,7 +121,7 @@ namespace S.A_Vistorias_ocorrencias.View
 
 		public static void AtualizarVistoria(string idVistoria, string status, DateTime data, string idUsuario, FileUpload imagem, string descricao, string endereco)
 		{
-
+			
 
 			Vistoria vistoria = Functions.GetVistoriaById(Int32.Parse(idVistoria));
 
@@ -136,20 +135,33 @@ namespace S.A_Vistorias_ocorrencias.View
 			Functions.AtualizarVistoria(vistoria);
 		}
 
-
+		
 
 
 
 		protected void btnAtualizar_Click(object sender, EventArgs e)
 		{
+
+			string caminhoArquivo = string.Empty;
 			if (txtImagem.HasFile)
 			{
-				string caminhoArquivo = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["caminhoArquivo"] + @"\" + txtImagem.FileName;
+				caminhoArquivo = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["caminhoArquivo"] + @"\" + txtImagem.FileName;
 				txtImagem.SaveAs(caminhoArquivo);
 				string arquivoUrl = System.Configuration.ConfigurationManager.AppSettings["caminhoArquivo"].Replace(@"\", "/") + "/" + txtImagem.FileName;
 			}
 
-			Vistoria vistoria = new Vistoria(Int32.Parse(txtIdVistoria.Text), txtIdResponsavel.Text, ddlStatus.SelectedValue, txtDescricao.Text, txtEndereco.Text, txtImagem.FileName, DateTime.Parse(txtData.Text));
+			//Vistoria vistoria = new Vistoria(Int32.Parse(txtIdVistoria.Text), txtIdResponsavel.Text, ddlStatus.SelectedValue, txtDescricao.Text, txtEndereco.Text,txtImagem.FileName ,DateTime.Parse(txtData.Text));
+
+			Vistoria vistoria = new Vistoria
+			{
+				idVistoria = Int32.Parse(txtIdVistoria.Text),
+				idUsuario = txtIdResponsavel.Text,
+				status = ddlStatus.SelectedValue,
+				descricao = txtDescricao.Text,
+				endereco = txtEndereco.Text,
+				imagem = caminhoArquivo,
+				dataAbertura = DateTime.Parse(txtData.Text)		
+			};
 
 			//vistoria = CriarVistoria();
 			Functions.AtualizarVistoria(vistoria);
