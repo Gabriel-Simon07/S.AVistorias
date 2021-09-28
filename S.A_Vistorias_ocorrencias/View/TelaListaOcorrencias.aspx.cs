@@ -24,17 +24,50 @@ namespace S.A_Vistorias_ocorrencias.View
 			}
 			if (!IsPostBack)
 			{
+				dptTipo.Items.Add("Ambiental");
+				dptTipo.Items.Add("Patrimonial");
+
 				Int32 id_vistoria = Int32.Parse(Request.QueryString["id_vistoria"]);
 				List<Ocorrencia> ocorrencias = Functions.TodasOcorrencias(id_vistoria);
-				gvListaOcorrencias.DataSource = ocorrencias;
-				gvListaOcorrencias.DataBind();
+				gdListaOcorrencias.DataSource = ocorrencias;
+				gdListaOcorrencias.DataBind();
 			}
 		}
 
 		protected void btnInserir_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("TelaCadastroOcorrencia.aspx?acao=INS");
+			string mode = "INS";
+			Int32 vistoriaId = Int32.Parse(txtIdVistoria.Text);
+			Response.Redirect($"TelaCadastroOcorrencia.aspx?mode={mode}&id_vistoria={vistoriaId}");
+		}
+		protected void gdListaOcorrencias_RowCommand(object sender, GridViewCommandEventArgs e)
+		{
+			int rowIndex = Convert.ToInt32(e.CommandArgument);
 
+			GridViewRow row = gdListaOcorrencias.Rows[rowIndex];
+
+			Int32 ocorrenciaId = Int32.Parse(row.Cells[1].Text);
+			Int32 vistoriaId = Int32.Parse(row.Cells[2].Text);
+
+			string mode;
+
+			switch (e.CommandName)
+			{
+				case "Alterar":
+					mode = "UPD";
+					Response.Redirect($"TelaCadastroOcorrencia.aspx?mode={mode}&id_ocorrencia={ocorrenciaId}&id_vistoria={vistoriaId}");
+					break;
+
+				case "Excluir":
+					mode = "DEL";
+					Response.Redirect($"TelaCadastroOcorrencia.aspx?mode={mode}&id_ocorrencia={ocorrenciaId}&id_vistoria={vistoriaId}");
+					break;
+
+				default:
+					mode = "DSP";
+					Response.Redirect($"TelaCadastroOcorrencia.aspx?mode={mode}&id_ocorrencia={ocorrenciaId}&id_vistoria={vistoriaId}");
+					break;
+			}
 		}
 	}
 }

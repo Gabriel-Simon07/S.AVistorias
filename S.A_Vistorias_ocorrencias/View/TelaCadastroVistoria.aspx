@@ -75,7 +75,7 @@
 			
 			<div>
                 <asp:Button ID="btnInserir" runat="server" Text="Inserir" OnClick="btnInserir_Click" BorderColor="Black" />
-                <asp:Button ID="btnExcluir" runat="server" Text="Excluir" BorderColor="Black" />
+                <asp:Button ID="btnExcluir" runat="server" Text="Excluir" BorderColor="Black" OnClick="btnExcluir_Click" />
                 <asp:Button ID="btnAtualizar" runat="server" Text="Atualizar" BorderColor="Black" OnClick="btnAtualizar_Click" />
                 <asp:Button ID="btnFechar" runat="server" Text="Fechar" BorderColor="Black" OnClick="btnFechar_Click" />
 			</div>

@@ -21,9 +21,10 @@ namespace S.A_Vistorias_ocorrencias
 
 		public Vistoria() { }
 
-		public Vistoria(string idUsuario, string status, string descricao, string endereco, string imagem, DateTime data)
+		public Vistoria(Int32 idVistoria, string idUsuario, string status, string descricao, string endereco, string imagem, DateTime data)
 		{
-			this.idUsuario = idUsuario;
+			this.idVistoria = idVistoria;
+			this.idUsuario = idUsuario;	
 			this.status = status;
 			this.descricao = descricao;
 			this.endereco = endereco;

@@ -41,13 +41,13 @@ namespace S.A_Vistorias_ocorrencias.View
 					if (mode != "INS")
 					{
 
-						Int32 id = Int32.Parse(Request.QueryString["id"].ToString());
+						Int32 id = Int32.Parse(Request.QueryString["id_vistoria"].ToString());
 
 						Vistoria vistoria = Functions.GetVistoriaById(id);
 
 						txtIdVistoria.Text = vistoria.idVistoria.ToString();
 						txtData.Text = vistoria.dataAbertura.ToString("yyyy-MM-dd");
-						ddlStatus.Text = vistoria.status.ToString();
+						ddlStatus.SelectedValue = vistoria.status;
 						txtIdResponsavel.Text = vistoria.idUsuario;
 						txtDescricao.Text = vistoria.descricao;
 						txtEndereco.Text = vistoria.endereco;
@@ -64,24 +64,40 @@ namespace S.A_Vistorias_ocorrencias.View
 					}
 				}
 			}
-		
+
 		}
 
 		protected void btnInserir_Click(object sender, EventArgs e)
-		{ 
-			Vistoria vistoria = CriarVistoria();
+		{
+			string caminhoArquivo = string.Empty;
+
+			if (txtImagem.HasFile)
+			{
+				caminhoArquivo = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["caminhoArquivo"] + @"\" + txtImagem.FileName;
+				txtImagem.SaveAs(caminhoArquivo);
+			}
+			Vistoria vistoria = new Vistoria
+			{
+				dataAbertura = DateTime.Parse(txtData.Text),
+				idUsuario = txtIdResponsavel.Text,
+				status = ddlStatus.SelectedValue,
+				descricao = txtDescricao.Text,
+				endereco = txtEndereco.Text,
+				imagem = caminhoArquivo
+			};
+
 			Functions.SalvarVistoria(vistoria);
 			Response.Redirect("TelaListaVistorias.aspx");
 		}
 
-		//INSERIR DATA NO CONSTRUTOR DO CADASTRO
 		private Vistoria CriarVistoria()
 		{
 			Vistoria vistoria = new Vistoria();
 
 			string caminhoArquivo = string.Empty;
 
-			if (txtImagem.HasFile) {
+			if (txtImagem.HasFile)
+			{
 				caminhoArquivo = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["caminhoArquivo"] + @"\" + txtImagem.FileName;
 				txtImagem.SaveAs(caminhoArquivo);
 			}
@@ -106,7 +122,7 @@ namespace S.A_Vistorias_ocorrencias.View
 
 		public static void AtualizarVistoria(string idVistoria, string status, DateTime data, string idUsuario, FileUpload imagem, string descricao, string endereco)
 		{
-			
+
 
 			Vistoria vistoria = Functions.GetVistoriaById(Int32.Parse(idVistoria));
 
@@ -120,12 +136,7 @@ namespace S.A_Vistorias_ocorrencias.View
 			Functions.AtualizarVistoria(vistoria);
 		}
 
-		public static void DeletarVistoriaById(string idVistoria)
-		{
-			Vistoria vistoria = Functions.GetVistoriaById(Int32.Parse(idVistoria));
 
-			Functions.TodasVistorias().Remove(vistoria);
-		}
 
 
 
@@ -138,7 +149,7 @@ namespace S.A_Vistorias_ocorrencias.View
 				string arquivoUrl = System.Configuration.ConfigurationManager.AppSettings["caminhoArquivo"].Replace(@"\", "/") + "/" + txtImagem.FileName;
 			}
 
-			Vistoria vistoria = new Vistoria(txtIdResponsavel.Text, ddlStatus.SelectedValue, txtDescricao.Text, txtEndereco.Text,txtImagem.FileName ,DateTime.Parse(txtData.Text));
+			Vistoria vistoria = new Vistoria(Int32.Parse(txtIdVistoria.Text), txtIdResponsavel.Text, ddlStatus.SelectedValue, txtDescricao.Text, txtEndereco.Text, txtImagem.FileName, DateTime.Parse(txtData.Text));
 
 			//vistoria = CriarVistoria();
 			Functions.AtualizarVistoria(vistoria);
@@ -159,6 +170,13 @@ namespace S.A_Vistorias_ocorrencias.View
 
 		protected void btnFechar_Click(object sender, EventArgs e)
 		{
+			Response.Redirect("TelaListaVistorias.aspx");
+		}
+
+		protected void btnExcluir_Click(object sender, EventArgs e)
+		{
+			Int32 id = Int32.Parse(txtIdVistoria.Text);
+			Functions.DeletarVistoriaById(id);
 			Response.Redirect("TelaListaVistorias.aspx");
 		}
 	}

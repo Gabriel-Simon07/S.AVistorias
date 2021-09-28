@@ -41,15 +41,15 @@ namespace S.A_Vistorias_ocorrencias.View
 					if (mode != "INS")
 					{
 
-						Int32 id = Int32.Parse(Request.QueryString["id"].ToString());
-						//CORRIGIR, OBTER LISTA DE OCORRENCIAS DA VISTORIA
-						//Vistoria vistoria = Functions.getOcorrenciaByIdVistoria();
+						Int32 id = Int32.Parse(Request.QueryString["id_ocorrencia"].ToString());
 
-						//txtIdVistoria.Text = vistoria.idVistoria.ToString();
-						//txtData.Text = vistoria.dataAbertura.ToString("yyyy-MM-dd");
-						//txtIdOcorrencia.Text = vistoria.idVistoria.ToString();
-						//dplTipo.SelectedValue = vistoria.status;
-						//txtDescricao.Text = vistoria.descricao;
+						Ocorrencia ocorrencia = Functions.getOcorrenciaByIdVistoria(id);
+
+						txtIdVistoria.Text = ocorrencia.idVistoria.ToString();
+						txtData.Text = ocorrencia.dataOcorrencia.ToString("yyyy-MM-dd");
+						txtIdOcorrencia.Text = ocorrencia.idOcorrencia.ToString();
+						dplTipo.SelectedValue = ocorrencia.tipo.ToString();
+						txtDescricao.Text = ocorrencia.descricao;
 
 						if (mode != "UPD")
 						{
@@ -75,33 +75,59 @@ namespace S.A_Vistorias_ocorrencias.View
 			Functions.AtualizarOcorrencia(ocorrencia);
 		}
 
-		public static void deletarOcorrenciaById(string idOcorrencia)
-		{
-			Ocorrencia ocorrencia = Functions.getOcorrenciaByIdVistoria(Int32.Parse(idOcorrencia));
-
-			//Functions.TodasOcorrencias().Remove(ocorrencia);	
-		}
+		
 
 		public static void getListOcorrencias()
 		{
 
 		}
 
-		public static void CadastrarOcorrencia(Int32 idVistoria, string descricao, DateTime data, Enum tipo)
-		{
-			Ocorrencia ocorrencia = new Ocorrencia();
-
-			ocorrencia.idVistoria = idVistoria;
-			ocorrencia.descricao = descricao;
-			ocorrencia.dataOcorrencia = data;
-			ocorrencia.tipo = tipo;
-
-			Functions.SalvarOcorrencia(ocorrencia);
-		}
-
 		protected void btnAtualizar_Click(object sender, EventArgs e)
 		{
+			Int32 vistoriaId = Int32.Parse(Request.QueryString["idVistoria"]);
+			Int32 ocorrenciaId = Int32.Parse(Request.QueryString["id_ocorrencia"]);
 
+			Ocorrencia ocorrencia = new Ocorrencia
+			{
+				idVistoria = vistoriaId,
+				idOcorrencia = ocorrenciaId,
+				dataOcorrencia = DateTime.Parse(txtData.Text),
+				tipo = (Enumeradores.Tipo)Enum.Parse(typeof(Enumeradores.Tipo), dplTipo.SelectedValue),
+				descricao = txtDescricao.Text
+			};
+			Functions.AtualizarOcorrencia(ocorrencia);
+			Response.Redirect($"TelaListaOcorrencia.aspx?idVistoria={vistoriaId}");
+		}
+
+		protected void btnInserir_Click(object sender, EventArgs e)
+		{
+			Int32 vistoriaId = Int32.Parse(Request.QueryString["idVistoria"]);
+
+			Ocorrencia ocorrencia = new Ocorrencia
+			{
+				idVistoria = vistoriaId,
+				dataOcorrencia = DateTime.Parse(txtData.Text),
+				tipo = (Enumeradores.Tipo) Enum.Parse(typeof(Enumeradores.Tipo), dplTipo.SelectedValue),
+				descricao = txtDescricao.Text
+			};
+
+			Functions.SalvarOcorrencia(ocorrencia);
+			Response.Redirect($"TelaListaOcorrencia.aspx?idVistoria={vistoriaId}");
+		}
+
+		protected void btnExcluir_Click(object sender, EventArgs e)
+		{
+			Int32 vistoriaId = Int32.Parse(Request.QueryString["idVistoria"]);
+			Int32 ocorrenciaId = Int32.Parse(Request.QueryString["id_ocorrencia"]);
+
+			Functions.deletarOcorrenciaById(ocorrenciaId);
+			Response.Redirect($"TelaListaOcorrencias.aspx?id_ocorrencia={vistoriaId}");
+		}
+
+		protected void btnFechar_Click(object sender, EventArgs e)
+		{
+			Int32 vistoriaId = Int32.Parse(Request.QueryString["idVistoria"]);
+			Response.Redirect($"TelaListaOcorrencias.aspx?id_ocorrencia={vistoriaId}");
 		}
 	}
 }

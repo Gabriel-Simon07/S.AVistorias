@@ -59,25 +59,41 @@
         <asp:Button ID="btnInserir" runat="server" Text="Inserir Ocorrências" BorderColor="Black" OnClick="btnInserir_Click" />
 	</div>
 	<div>
-        <asp:GridView ID="gvListaOcorrencias" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
-			<AlternatingRowStyle BackColor="White" />
-			<Columns>
-				<asp:BoundField DataField="idOcorrencia" HeaderText="ID" />
-				<asp:BoundField DataField="tipo" HeaderText="Tipo" />
-				<asp:BoundField DataField="dataOcorrencia" HeaderText="Data Ocorrência" />
-				<asp:BoundField HeaderText="Foto" />
-			</Columns>
-			<EditRowStyle BackColor="#7C6F57" />
-			<FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-			<HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-			<PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-			<RowStyle BackColor="#E3EAEB" />
-			<SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
-			<SortedAscendingCellStyle BackColor="#F8FAFA" />
-			<SortedAscendingHeaderStyle BackColor="#246B61" />
-			<SortedDescendingCellStyle BackColor="#D4DFE1" />
-			<SortedDescendingHeaderStyle BackColor="#15524A" />
-		</asp:GridView>
+         <asp:GridView ID="gdListaOcorrencias" runat="server" OnRowCommand="gdListaOcorrencias_RowCommand" CellPadding="4" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px">
+                    <Columns>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                 <asp:Button ID="btnVisualizar" runat="server"
+                                    CommandName="Visualizar"
+                                    CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                    Text="Visualizar" />
+                                <asp:Button ID="btnAlterar" runat="server"
+                                    CommandName="Alterar"
+                                    CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                    Text="Alterar" />
+                                <asp:Button ID="btnExcluir" runat="server"
+                                  CommandName="Excluir"
+                                  CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                  Text="Excluir" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    	<asp:BoundField HeaderText="ID Ocorrência" DataField="idOcorrencia" />
+						<asp:BoundField DataField="idVistoria" HeaderText="ID Vistoria" />
+						<asp:BoundField DataField="descricao" HeaderText="Descrição" />
+						<asp:BoundField DataField="dataOcorrencia" HeaderText="Data Ocorrência" />
+						<asp:BoundField DataField="descricao" HeaderText="Descrição" />
+						<asp:BoundField DataField="tipo" HeaderText="Tipo" />
+                    </Columns>
+			    <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
+			    <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
+			    <PagerStyle BackColor="#99CCCC" ForeColor="#003399" HorizontalAlign="Left" />
+			    <RowStyle BackColor="White" ForeColor="#003399" />
+			    <SelectedRowStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
+			    <SortedAscendingCellStyle BackColor="#EDF6F6" />
+			    <SortedAscendingHeaderStyle BackColor="#0D4AC4" />
+			    <SortedDescendingCellStyle BackColor="#D6DFDF" />
+			    <SortedDescendingHeaderStyle BackColor="#002876" />
+		    </asp:GridView>
 	</div>
 </body>
 </html>

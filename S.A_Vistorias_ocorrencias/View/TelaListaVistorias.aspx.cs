@@ -45,25 +45,62 @@ namespace S.A_Vistorias_ocorrencias.View
 		protected void gdListaVistorias_RowCommand(object sender, GridViewCommandEventArgs e)
 		{
 
-			int indiceLinha = Convert.ToInt32(e.CommandArgument);
+			//int indiceLinha = Convert.ToInt32(e.CommandArgument);
 
-			GridViewRow linha = gdListaVistorias.Rows[indiceLinha];
+			//GridViewRow linha = gdListaVistorias.Rows[indiceLinha];
 
-			Int32 id_vistoria = Int32.Parse(linha.Cells[1].Text);
+			//Int32 id_vistoria = Int32.Parse(linha.Cells[1].Text);
 
-			if (e.CommandName == "Visualizar")
+			//if (e.CommandName == "Visualizar")
+			//{
+			//	Response.Redirect($"TelaCadastroVistoria.aspx?mode=visualizar&id_vistoria={id_vistoria}");
+			//}
+
+			//if(e.CommandName == "Ocorrencia")
+			//{
+			//	Response.Redirect($"TelaListaOcorrencias.aspx?mode=ocorrencia&id_vistoria={id_vistoria}");
+			//}
+
+			//if(e.CommandName == "Alterar")
+			//{
+			//	Response.Redirect($"TelaCadastroVistoria.aspx?mode=UPD&id_vistoria={id_vistoria}");
+			//}
+
+			//--Obter o indice da linha que o usuario clicou
+			int rowIndex = Convert.ToInt32(e.CommandArgument);
+			//--Obter o objeto linha
+			GridViewRow row = gdListaVistorias.Rows[rowIndex];
+			//--Obter o conteúdo da linha selecionada na coluna 1, que no caso deve ser o Id da vistoria
+			Int32 vistoriaId = Int32.Parse(row.Cells[1].Text);
+
+			string mode;
+
+			switch (e.CommandName)
 			{
-				Response.Redirect($"TelaCadastroVistoria.aspx?mode=visualizar&id_vistoria={id_vistoria}");
-			}
+				case "Alterar":
 
-			if(e.CommandName == "Ocorrencia")
-			{
-				Response.Redirect($"TelaListaOcorrencias.aspx?mode=ocorrencia&id_vistoria={id_vistoria}");
-			}
+					mode = "UPD";
+					Response.Redirect($"TelaCadastroVistoria.aspx?mode={mode}&id_vistoria={vistoriaId}");
+					break;
 
-			if(e.CommandName == "Alterar")
-			{
-				Response.Redirect($"TelaCadastroVistoria.aspx?mode=UPD&id_vistoria={id_vistoria}");
+				case "Excluir":
+
+					mode = "DEL";
+					Response.Redirect($"TelaCadastroVistoria.aspx?mode={mode}&id_vistoria={vistoriaId}");
+					break;
+
+				default:
+
+					mode = "DSP";
+					Response.Redirect($"TelaCadastroVistoria.aspx?mode={mode}&id_vistoria={vistoriaId}");
+					break;
+
+				case "Ocorrencia":
+
+					string js = $"OpenPopupCenter('ListaOcorrencia.aspx?idv={vistoriaId}', 'Lista de ocorrências', 1366, 768);";
+					ClientScript.RegisterStartupScript(this.GetType(), "script", js, true);
+					break;
+
 			}
 		}
 	}

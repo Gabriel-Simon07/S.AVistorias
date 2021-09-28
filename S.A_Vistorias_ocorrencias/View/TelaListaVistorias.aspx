@@ -68,8 +68,7 @@
            </tr>
       </table>          
         <asp:Panel ID="PanelListaVistorias" runat="server" GroupingText="Lista de Vistorias">
-            <asp:GridView ID="gdListaVistorias" runat="server" OnRowCommand="gdListaVistorias_RowCommand" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False">
-			    <AlternatingRowStyle BackColor="White" />
+            <asp:GridView ID="gdListaVistorias" runat="server" OnRowCommand="gdListaVistorias_RowCommand" CellPadding="4" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px">
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
@@ -91,8 +90,8 @@
                                     Text="Ocorrência" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                    	<asp:BoundField HeaderText="ID" DataField="idVistoria" />
-						<asp:BoundField DataField="idUsuario" HeaderText="ID Usuário" />
+                    	<asp:BoundField HeaderText="ID" DataField="idUsuario" />
+						<asp:BoundField DataField="idVistoria" HeaderText="ID Usuário" />
 						<asp:BoundField DataField="status" HeaderText="Status" />
 						<asp:BoundField DataField="dataAbertura" HeaderText="Data" />
 						<asp:ImageField DataImageUrlField="imagem" HeaderText="Foto">
@@ -100,16 +99,15 @@
 						<asp:BoundField DataField="descricao" HeaderText="Descrição" />
 						<asp:BoundField DataField="endereco" HeaderText="Endereço" />
                     </Columns>
-			    <EditRowStyle BackColor="#7C6F57" />
-			    <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-			    <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-			    <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-			    <RowStyle BackColor="#E3EAEB" />
-			    <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
-			    <SortedAscendingCellStyle BackColor="#F8FAFA" />
-			    <SortedAscendingHeaderStyle BackColor="#246B61" />
-			    <SortedDescendingCellStyle BackColor="#D4DFE1" />
-			    <SortedDescendingHeaderStyle BackColor="#15524A" />
+			    <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
+			    <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
+			    <PagerStyle BackColor="#99CCCC" ForeColor="#003399" HorizontalAlign="Left" />
+			    <RowStyle BackColor="White" ForeColor="#003399" />
+			    <SelectedRowStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
+			    <SortedAscendingCellStyle BackColor="#EDF6F6" />
+			    <SortedAscendingHeaderStyle BackColor="#0D4AC4" />
+			    <SortedDescendingCellStyle BackColor="#D6DFDF" />
+			    <SortedDescendingHeaderStyle BackColor="#002876" />
 		    </asp:GridView>
           </asp:Panel>
     </form>

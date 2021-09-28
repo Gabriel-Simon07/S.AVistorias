@@ -115,6 +115,28 @@ namespace S.A_Vistorias_ocorrencias
 			return lista;
 		}
 
+		public static void DeletarVistoriaById(Int32 idVistoria)
+		{
+			Vistoria vistoria = Functions.GetVistoriaById(idVistoria);
+
+			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
+			string query = "Delete From VISTORIA where id_vistoria = @id_vistoria";
+			MySqlCommand comando = new MySqlCommand(query, conexao);
+			try
+			{
+				conexao.Open();
+				comando.Parameters.AddWithValue("@id_vistoria", idVistoria);
+				comando.ExecuteNonQuery();
+			}
+			catch (SqlException ex)
+			{
+				string errorMessage = ex.ToString();
+			}
+			finally
+			{
+				conexao.Close();
+			}
+		}
 		public static List<Ocorrencia> TodasOcorrencias(Int32 id_vistoria)
 		{
 			List<Ocorrencia> lista = new List<Ocorrencia>();
@@ -211,27 +233,27 @@ namespace S.A_Vistorias_ocorrencias
 		{
 			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
 
-			//string query = $"UPDATE ocorrencia set id_vistoria = @id_vistoria, descricao = @descricao, data_ocorrencia = @data_ocorrencia, tipo = @tipo WHERE id_ocorrencia '{}'";
+			string query = $"UPDATE ocorrencia set descricao = @descricao, data_ocorrencia = @data_ocorrencia, tipo = @tipo WHERE id_ocorrencia = @id_ocorrencia";
 
-			//MySqlCommand comando = new MySqlCommand(query, conexao);
+			MySqlCommand comando = new MySqlCommand(query, conexao);
 
-			//try
-			//{
-			//	conexao.Open();
-			//	comando.Parameters.AddWithValue("@id_vistoria", ocorrencia.idVistoria);
-			//	comando.Parameters.AddWithValue("@descricao", ocorrencia.descricao);
-			//	comando.Parameters.AddWithValue("@data_ocorrencia", ocorrencia.dataOcorrencia);
-			//	comando.Parameters.AddWithValue("@tipo", ocorrencia.tipo);
-			//	comando.ExecuteNonQuery();
-			//}
-			//catch (SqlException se)
-			//{
-			//	string erro = se.ToString();
-			//}
-			//finally
-			//{
-			//	conexao.Close();
-			//}
+			try
+			{
+				conexao.Open();
+				comando.Parameters.AddWithValue("@id_ocorrencia", ocorrencia.idOcorrencia);
+				comando.Parameters.AddWithValue("@descricao", ocorrencia.descricao);
+				comando.Parameters.AddWithValue("@data_ocorrencia", ocorrencia.dataOcorrencia);
+				comando.Parameters.AddWithValue("@tipo", ocorrencia.tipo);
+				comando.ExecuteNonQuery();
+			}
+			catch (SqlException se)
+			{
+				string erro = se.ToString();
+			}
+			finally
+			{
+				conexao.Close();
+			}
 		}
 
 		public static void AtualizarVistoria(Vistoria vistoria)
@@ -296,6 +318,29 @@ namespace S.A_Vistorias_ocorrencias
 				conexao.Close();
 			}
 			return ocorrencia;
+		}
+
+		public static void deletarOcorrenciaById(Int32 idOcorrencia)
+		{
+			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
+
+			string query = "Delete From OCORRENCIA where id_ocorrencia = @id_ocorrencia";
+			MySqlCommand comando = new MySqlCommand(query, conexao);
+
+			try
+			{
+				conexao.Open();
+				comando.Parameters.AddWithValue("@id_ocorrencia", idOcorrencia);
+				comando.ExecuteNonQuery();
+			}
+			catch (SqlException ex)
+			{
+				string errorMessage = ex.ToString();
+			}
+			finally
+			{
+				conexao.Close();
+			}
 		}
 	}
 
