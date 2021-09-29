@@ -16,26 +16,25 @@ namespace S.A_Vistorias_ocorrencias
 		public Int32 idVistoria { get; set; }
 		public string descricao { get; set; }
 		public DateTime dataOcorrencia { get; set; }
-		public Enum tipo { get; set; }
+		public Enumeradores.Tipo tipo { get; set; }
 
 		public Ocorrencia() { }
 
-		public Ocorrencia(Int32 idVistoria, Int32 idOcorrencia, string descricao, DateTime data, Enum tipo)
+		public Ocorrencia(Int32 idVistoria, Int32 idOcorrencia, string descricao, DateTime data, string tipo)
 		{
 			this.idVistoria = idVistoria;
 			this.idOcorrencia = idOcorrencia;
 			this.descricao = descricao;
 			this.dataOcorrencia = data;
-			this.tipo = tipo;
+			this.tipo = (Enumeradores.Tipo)Enum.Parse(typeof(Enumeradores.Tipo), tipo);
 		}
 
 		public Ocorrencia(MySqlDataReader dadoLido) {
 			this.idOcorrencia = !dadoLido.IsDBNull(0) ? dadoLido.GetInt32(0) : 0;
+			this.tipo = !dadoLido.IsDBNull(1) ? (Enumeradores.Tipo)Enum.Parse(typeof(Enumeradores.Tipo), dadoLido.GetString(1)) : Enumeradores.Tipo.AMBIENTE;
 			this.idVistoria = !dadoLido.IsDBNull(2) ? dadoLido.GetInt32(2) : 0;
-			this.descricao = !dadoLido.IsDBNull(4) ? dadoLido.GetString(4) : "";
 			this.dataOcorrencia = !dadoLido.IsDBNull(3) ? dadoLido.GetDateTime(3) : DateTime.MinValue;
-			string tipoStr = !dadoLido.IsDBNull(1) ? dadoLido.GetString(1) : "AMBIENTE";
-			this.tipo = Enumeradores.Parse(typeof(Enumeradores.Tipo), tipoStr);
+			this.descricao = !dadoLido.IsDBNull(4) ? dadoLido.GetString(4) : "";
 
 		}
 	}

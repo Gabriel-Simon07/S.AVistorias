@@ -46,8 +46,8 @@
                 </td>
                 <td>
                     <asp:DropDownList ID="dplTipo" runat="server" Height="16px" Width="126px">
-                        <asp:ListItem>Ambiental</asp:ListItem>
-                        <asp:ListItem>Patrimonial</asp:ListItem>
+                        <asp:ListItem>AMBIENTE</asp:ListItem>
+                        <asp:ListItem>PATRIMONIAL</asp:ListItem>
 					</asp:DropDownList>
                 </td>
             </tr>
@@ -57,7 +57,6 @@
                 </td>
                 <td>
                     <asp:TextBox ID="txtDescricao" runat="server" Width="782px"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Descrição precisa ser informada" ControlToValidate="txtDescricao" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
          </table>		        

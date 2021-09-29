@@ -13,9 +13,5 @@ namespace S.A_Vistorias_ocorrencias
 			AMBIENTE
 		};
 
-		internal static Tipo Parse(Type type, string tipoStr)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

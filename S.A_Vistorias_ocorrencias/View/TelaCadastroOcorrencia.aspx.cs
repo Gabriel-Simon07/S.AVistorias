@@ -44,7 +44,7 @@ namespace S.A_Vistorias_ocorrencias.View
 					if (mode != "INS")
 					{
 
-						Int32 idOcorrencia = Int32.Parse(Request.QueryString["id_ocorrencia"].ToString());
+						Int32 idOcorrencia = Int32.Parse(Request.QueryString["id_vistoria"].ToString());
 
 						Ocorrencia ocorrencia = Functions.getOcorrenciaByIdVistoria(idOcorrencia);
 
@@ -67,19 +67,6 @@ namespace S.A_Vistorias_ocorrencias.View
 			}
 		}
 
-		
-
-		public static void atualizarOcorrencia(string idOcorrencia, string descricao, Enum tipo)
-		{
-			Ocorrencia ocorrencia = Functions.getOcorrenciaByIdVistoria(Int32.Parse(idOcorrencia));
-			ocorrencia.descricao = descricao;
-			ocorrencia.tipo = tipo;
-
-			Functions.AtualizarOcorrencia(ocorrencia);
-		}
-
-		
-
 		public static void getListOcorrencias()
 		{
 
@@ -99,7 +86,7 @@ namespace S.A_Vistorias_ocorrencias.View
 				descricao = txtDescricao.Text
 			};
 			Functions.AtualizarOcorrencia(ocorrencia);
-			Response.Redirect($"TelaListaOcorrencia.aspx?id_vistoria={vistoriaId}");
+			Response.Redirect($"TelaListaOcorrencias.aspx?id_vistoria={vistoriaId}");
 		}
 
 		protected void btnInserir_Click(object sender, EventArgs e)
@@ -115,7 +102,7 @@ namespace S.A_Vistorias_ocorrencias.View
 			};
 
 			Functions.SalvarOcorrencia(ocorrencia);
-			Response.Redirect($"TelaListaOcorrencia.aspx?i_vistoria={vistoriaId}");
+			Response.Redirect($"TelaListaOcorrencias.aspx?id_vistoria={vistoriaId}");
 		}
 
 		protected void btnExcluir_Click(object sender, EventArgs e)
@@ -124,13 +111,13 @@ namespace S.A_Vistorias_ocorrencias.View
 			Int32 ocorrenciaId = Int32.Parse(Request.QueryString["id_ocorrencia"]);
 
 			Functions.deletarOcorrenciaById(ocorrenciaId);
-			Response.Redirect($"TelaListaOcorrencias.aspx?id_ocorrencia={vistoriaId}");
+			Response.Redirect($"TelaListaOcorrencias.aspx?id_vistoria={vistoriaId}");
 		}
 
 		protected void btnFechar_Click(object sender, EventArgs e)
 		{
 			Int32 vistoriaId = Int32.Parse(Request.QueryString["id_vistoria"]);
-			Response.Redirect($"TelaListaOcorrencias.aspx?id_ocorrencia={vistoriaId}");
+			Response.Redirect($"TelaListaOcorrencias.aspx?id_vistoria={vistoriaId}");
 		}
 	}
 }
