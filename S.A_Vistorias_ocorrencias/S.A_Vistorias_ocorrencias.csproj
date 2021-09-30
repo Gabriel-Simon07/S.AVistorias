@@ -69,7 +69,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="View\Estilos.css" />
+    <Content Include="View\imagemsa.png" />
     <Content Include="View\LogoGole_drinks.jpeg" />
+    <Content Include="View\logout.jpg" />
     <Content Include="View\TelaCadastroOcorrencia.aspx" />
     <Content Include="View\TelaCadastroVistoria.aspx" />
     <Content Include="View\TelaListaVistorias.aspx" />

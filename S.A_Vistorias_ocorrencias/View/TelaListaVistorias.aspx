@@ -9,6 +9,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:Panel ID="Panel1" runat="server">
+        <img alt="" src="../View/imagemsa.png" style="height: 87px; width: 90px" align="middle" border-style="Solid" border-color="Black"/>
+        <asp:ImageButton ID="ImageButtonLogout" runat="server" ImageAlign="Right" ImageUrl="../View/logout.jpg" Width="40" Height="40" OnClick="ButtonLogouta_Click" />
+        </asp:Panel>
+        <asp:Panel ID="Panel2" runat="server" GroupingText="Filtros">
        <table>
         <tr>
             <td>
@@ -60,13 +65,14 @@
         </tr>
            <tr>
                <td>
-                   <asp:Button ID="btnPesquisar" runat="server" Text="Pesquisar" BorderColor="Black" />
+                   <asp:Button ID="btnPesquisar" runat="server" Text="Pesquisar" BorderColor="Black" OnClick="btnPesquisar_Click" />
                </td>
                <td>
                    <asp:Button ID="btnInserirVistoria" runat="server" Text="Inserir Vistoria" OnClick="btnInserirVistoria_Click" BorderColor="Black" />
                </td>
            </tr>
       </table>          
+            </asp:Panel>
         <asp:Panel ID="PanelListaVistorias" runat="server" GroupingText="Lista de Vistorias">
             <asp:GridView ID="gdListaVistorias" runat="server" OnRowCommand="gdListaVistorias_RowCommand" CellPadding="4" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px">
                     <Columns>

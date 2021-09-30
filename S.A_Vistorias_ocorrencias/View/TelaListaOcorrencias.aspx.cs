@@ -22,17 +22,20 @@ namespace S.A_Vistorias_ocorrencias.View
 			{
 				Response.Redirect("TelaLogin.aspx");
 			}
-			if (!IsPostBack)
-			{
-				dptTipo.Items.Add("Ambiental");
-				dptTipo.Items.Add("Patrimonial");
-
+			
 				Int32 id_vistoria = Int32.Parse(Request.QueryString["id_vistoria"]);
 				txtIdVistoria.Text = id_vistoria.ToString();
-				List<Ocorrencia> ocorrencias = Functions.TodasOcorrencias(id_vistoria);
-				gdListaOcorrencias.DataSource = ocorrencias;
-				gdListaOcorrencias.DataBind();
-			}
+
+				if (!IsPostBack)
+				{
+					dptTipo.Items.Add("Ambiental");
+					dptTipo.Items.Add("Patrimonial");
+
+					txtIdVistoria.Text = id_vistoria.ToString();
+					List<Ocorrencia> ocorrencias = Functions.TodasOcorrencias(id_vistoria);
+					gdListaOcorrencias.DataSource = ocorrencias;
+					gdListaOcorrencias.DataBind();
+				}	
 		}
 
 		protected void btnInserir_Click(object sender, EventArgs e)
@@ -69,6 +72,21 @@ namespace S.A_Vistorias_ocorrencias.View
 					Response.Redirect($"TelaCadastroOcorrencia.aspx?mode={mode}&id_ocorrencia={ocorrenciaId}&id_vistoria={vistoriaId}");
 					break;
 			}
+		}
+
+		protected void btnPesquisarOcorrencia_Click(object sender, EventArgs e)
+		{
+			List<string> parametros = new List<string>();
+
+			parametros.Add("");
+			parametros.Add(dptTipo.SelectedValue);
+			parametros.Add(txtDataInicial.Text);
+			parametros.Add(txtDataFinal.Text);
+			parametros.Add(txtDescricao.Text);
+			parametros.Add(txtIdVistoria.Text);
+
+			gdListaOcorrencias.DataSource = Functions.getOcorrenciaByParametros(parametros);
+			gdListaOcorrencias.DataBind();
 		}
 	}
 }

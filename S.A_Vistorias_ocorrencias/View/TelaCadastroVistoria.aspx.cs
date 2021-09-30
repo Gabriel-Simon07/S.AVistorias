@@ -112,13 +112,6 @@ namespace S.A_Vistorias_ocorrencias.View
 			return vistoria;
 		}
 
-
-
-
-
-
-
-
 		public static void AtualizarVistoria(string idVistoria, string status, DateTime data, string idUsuario, FileUpload imagem, string descricao, string endereco)
 		{
 			
@@ -135,10 +128,6 @@ namespace S.A_Vistorias_ocorrencias.View
 			Functions.AtualizarVistoria(vistoria);
 		}
 
-		
-
-
-
 		protected void btnAtualizar_Click(object sender, EventArgs e)
 		{
 
@@ -149,8 +138,6 @@ namespace S.A_Vistorias_ocorrencias.View
 				txtImagem.SaveAs(caminhoArquivo);
 				string arquivoUrl = System.Configuration.ConfigurationManager.AppSettings["caminhoArquivo"].Replace(@"\", "/") + "/" + txtImagem.FileName;
 			}
-
-			//Vistoria vistoria = new Vistoria(Int32.Parse(txtIdVistoria.Text), txtIdResponsavel.Text, ddlStatus.SelectedValue, txtDescricao.Text, txtEndereco.Text,txtImagem.FileName ,DateTime.Parse(txtData.Text));
 
 			Vistoria vistoria = new Vistoria
 			{
@@ -163,7 +150,6 @@ namespace S.A_Vistorias_ocorrencias.View
 				dataAbertura = DateTime.Parse(txtData.Text)		
 			};
 
-			//vistoria = CriarVistoria();
 			Functions.AtualizarVistoria(vistoria);
 			Response.Redirect("TelaListaVistorias.aspx");
 		}

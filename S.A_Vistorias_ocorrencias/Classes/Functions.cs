@@ -41,6 +41,38 @@ namespace S.A_Vistorias_ocorrencias
 			}
 			return vistoria;
 		}
+
+		public static Usuario GetUsuarioById(Int32 idUsuario)
+		{
+			Usuario usuario = new Usuario();
+
+			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
+
+			string query = $"SELECT  * FROM usuario WHERE id_usuario = '{idUsuario}' LIMIT 1";
+
+			MySqlCommand comando = new MySqlCommand(query, conexao);
+			try
+			{
+				conexao.Open();
+
+				MySqlDataReader dadoLido = comando.ExecuteReader();
+
+				while (dadoLido.Read())
+				{
+					usuario = new Usuario(dadoLido);
+				}
+			}
+			catch (SqlException se)
+			{
+				string erro = se.ToString();
+			}
+			finally
+			{
+				conexao.Close();
+			}
+			return usuario;
+		}
+
 		public static string ObterConnectionString()
 		{
 			return "server=localhost;userid=root;sslmode=None;database=s_a_vistoria_e_ocorrencias";
@@ -341,6 +373,82 @@ namespace S.A_Vistorias_ocorrencias
 			{
 				conexao.Close();
 			}
+		}
+
+		public static List<Ocorrencia> getOcorrenciaByParametros(List<string>parametros)
+		{
+			List<Ocorrencia> listaOcorrencia = new List<Ocorrencia>();	
+
+			MySqlConnection conexao = new MySqlConnection(Functions.ObterConnectionString());
+
+			string query = "SELECT * FROM ocorrencia";
+			string where = string.Empty;
+			int i = 0;
+
+			foreach (string parametro in parametros)
+			{
+				if(parametro != string.Empty)
+				{
+					switch (i)
+					{
+						case 0:
+							where += "id_ocorrencia = @id_ocorrencia";
+							break;
+						case 1:
+							where += where != string.Empty ? " AND " : "";
+							where += "id_vistoria = @id_vistoria";
+							break;
+						case 2:
+							where += where != string.Empty ? " AND " : "";
+							where += " data_ocorrencia >= @dataInicial"; //?
+							break;
+						case 3:
+							where += where != string.Empty ? " AND " : "";
+							where += " data_ocorrencia <= @dataFinal";//?
+							break;
+						case 4:
+							where += where != string.Empty ? " AND " : "";
+							where += " descricao = @descricao";
+							break;
+						case 5:
+							where += where != string.Empty ? " AND " : "";
+							where += " tipo = @tipo";
+							break;
+					}
+				}
+				i++;
+			}
+			if (where != string.Empty)
+				where = " WHERE " + where;
+
+			query += where;
+
+			MySqlCommand comando = new MySqlCommand(query, conexao);
+
+			try
+			{
+				conexao.Open();
+				comando.Parameters.AddWithValue("@id_ocorrencia", parametros[0]);
+				comando.Parameters.AddWithValue("@tipo", parametros[1]);
+				comando.Parameters.AddWithValue("@id_vistoria", parametros[2]);
+				comando.Parameters.AddWithValue("@descricao", parametros[4]);
+				MySqlDataReader dadoLido = comando.ExecuteReader();
+
+				while (dadoLido.Read())
+				{
+					listaOcorrencia.Add(new Ocorrencia(dadoLido));
+				}
+
+			}
+			catch (SqlException ex)
+			{
+				string error = ex.ToString();
+			}
+			finally
+			{
+				conexao.Close();
+			}
+			return listaOcorrencia;
 		}
 	}
 

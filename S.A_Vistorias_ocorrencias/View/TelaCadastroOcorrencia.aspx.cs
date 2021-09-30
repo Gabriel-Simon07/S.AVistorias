@@ -67,11 +67,6 @@ namespace S.A_Vistorias_ocorrencias.View
 			}
 		}
 
-		public static void getListOcorrencias()
-		{
-
-		}
-
 		protected void btnAtualizar_Click(object sender, EventArgs e)
 		{
 			Int32 vistoriaId = Int32.Parse(Request.QueryString["id_vistoria"]);

@@ -9,7 +9,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <img alt="" src="../View/LogoGole_drinks.jpeg" style="height: 80px; width: 82px" />
+        <img alt="" src="../View/imagemsa.png" style="height: 87px; width: 90px" align="middle" border-style="Solid" border-color="Black"/>
+        <asp:Panel ID="Panel1" runat="server" GroupingText="Filtros">
         <table>
             <tr>
                 <td>
@@ -53,8 +54,9 @@
                 </td>
             </tr>
          </table>
+            </asp:Panel>
         <div>
-        <asp:Button ID="btnPesquisarOcorrencia"  Text="Pesquisar" BorderColor="Black" runat="server" />
+        <asp:Button ID="btnPesquisarOcorrencia"  Text="Pesquisar" BorderColor="Black" runat="server" OnClick="btnPesquisarOcorrencia_Click" />
         <asp:Button ID="btnInserir" runat="server" Text="Inserir Ocorrências" BorderColor="Black" OnClick="btnInserir_Click" />
 	</div>
 	<div>
@@ -80,7 +82,6 @@
 						<asp:BoundField DataField="idVistoria" HeaderText="ID Vistoria" />
 						<asp:BoundField DataField="descricao" HeaderText="Descrição" />
 						<asp:BoundField DataField="dataOcorrencia" HeaderText="Data Ocorrência" />
-						<asp:BoundField DataField="descricao" HeaderText="Descrição" />
 						<asp:BoundField DataField="tipo" HeaderText="Tipo" />
                     </Columns>
 			    <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />

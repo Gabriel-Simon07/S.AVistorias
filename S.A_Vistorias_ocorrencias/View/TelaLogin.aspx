@@ -8,31 +8,30 @@
     <title></title>
 </head>
 <body>
-<img src="Downloads\imagem\marreco" />
+    
     <form id="form1" runat="server">
-          <img alt="" src="../View/LogoGole_drinks.jpeg" style="height: 87px; width: 90px" align="middle" />
+        <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Center" Width="400px" BackColor="#3399FF" BorderColor="Black" BorderStyle="Solid">
+          <img alt="" src="../View/imagemsa.png" style="height: 87px; width: 90px" align="middle" border-style="Solid" border-color="Black"/>
             <table>
                 <tr>
                     <td>
                         <asp:Label ID="LabelUsuario" runat="server" Text="Usuário"></asp:Label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtLogin" runat="server"></asp:TextBox>
-                        
+                        <asp:TextBox ID="txtLogin" runat="server" HorizontalAlign="Center"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:Label ID="LabelSenha" runat="server" Text="Senha"></asp:Label>
+                        <asp:Label ID="LabelSenha" runat="server" Text="Senha" HorizontalAlign="Center"></asp:Label>
                     </td>
                     <td>
                         <asp:TextBox ID="txtSenha" runat="server" TextMode="Password"></asp:TextBox>
-                       
                     </td>
                 </tr>
             </table>
+            </asp:Panel>
             <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" BorderColor="Black" />
     </form>
-    
 </body>
 </html>

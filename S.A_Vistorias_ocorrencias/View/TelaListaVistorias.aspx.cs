@@ -27,8 +27,6 @@ namespace S.A_Vistorias_ocorrencias.View
 				Response.Redirect("TelaLogin.aspx");
 			}
 
-			//acima verifica se esta logado 
-
 			if (!IsPostBack)
 			{
 				gdListaVistorias.DataSource = Functions.TodasVistorias();
@@ -79,6 +77,17 @@ namespace S.A_Vistorias_ocorrencias.View
 					break;
 
 			}
+		}
+
+		protected void btnPesquisar_Click(object sender, EventArgs e)
+		{
+			
+		}
+
+		protected void ButtonLogouta_Click(object sender, ImageClickEventArgs e)
+		{
+			Session["Login"] = string.Empty;
+			Response.Redirect("TelaLogin.aspx");
 		}
 	}
 }

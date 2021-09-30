@@ -10,7 +10,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <img alt="" src="../View/LogoGole_drinks.jpeg" style="height: 80px; width: 82px" />
+            <img alt="" src="../View/imagemsa.png" style="height: 80px; width: 82px" />
 			<table ID="tblCadastro" runat="server">
 				<tr>
 					<td>
