@@ -24,6 +24,15 @@ namespace S.A_Vistorias_ocorrencias
 		protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
 		/// <summary>
+		/// Controle Panel1.
+		/// </summary>
+		/// <remarks>
+		/// Campo gerado automaticamente.
+		/// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Panel Panel1;
+
+		/// <summary>
 		/// Controle LabelUsuario.
 		/// </summary>
 		/// <remarks>
@@ -33,13 +42,13 @@ namespace S.A_Vistorias_ocorrencias
 		protected global::System.Web.UI.WebControls.Label LabelUsuario;
 
 		/// <summary>
-		/// Controle txtUsuario.
+		/// Controle txtLogin.
 		/// </summary>
 		/// <remarks>
 		/// Campo gerado automaticamente.
 		/// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox txtUsuario;
+		protected global::System.Web.UI.WebControls.TextBox txtLogin;
 
 		/// <summary>
 		/// Controle LabelSenha.

@@ -11,7 +11,82 @@ namespace S.A_Vistorias_ocorrencias.View
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			string login = string.Empty;
 
+			if (Session["Login"] != null)
+			{
+				login = Session["Login"].ToString();
+			}
+
+			if (login == string.Empty)
+			{
+				Response.Redirect("TelaLogin.aspx");
+			}
+			
+				Int32 id_vistoria = Int32.Parse(Request.QueryString["id_vistoria"]);
+				txtIdVistoria.Text = id_vistoria.ToString();
+
+				if (!IsPostBack)
+				{
+					dptTipo.Items.Add("Ambiental");
+					dptTipo.Items.Add("Patrimonial");
+
+					txtIdVistoria.Text = id_vistoria.ToString();
+					List<Ocorrencia> ocorrencias = Functions.TodasOcorrencias(id_vistoria);
+					gdListaOcorrencias.DataSource = ocorrencias;
+					gdListaOcorrencias.DataBind();
+				}	
+		}
+
+		protected void btnInserir_Click(object sender, EventArgs e)
+		{
+			string mode = "INS";
+			Int32 vistoriaId = Int32.Parse(txtIdVistoria.Text);
+			Response.Redirect($"TelaCadastroOcorrencia.aspx?mode={mode}&id_vistoria={vistoriaId}");
+		}
+		protected void gdListaOcorrencias_RowCommand(object sender, GridViewCommandEventArgs e)
+		{
+			int rowIndex = Convert.ToInt32(e.CommandArgument);
+
+			GridViewRow row = gdListaOcorrencias.Rows[rowIndex];
+
+			Int32 ocorrenciaId = Int32.Parse(row.Cells[1].Text);
+			Int32 vistoriaId = Int32.Parse(row.Cells[2].Text);
+
+			string mode;
+
+			switch (e.CommandName)
+			{
+				case "Alterar":
+					mode = "UPD";
+					Response.Redirect($"TelaCadastroOcorrencia.aspx?mode={mode}&id_ocorrencia={ocorrenciaId}&id_vistoria={vistoriaId}");
+					break;
+
+				case "Excluir":
+					mode = "DEL";
+					Response.Redirect($"TelaCadastroOcorrencia.aspx?mode={mode}&id_ocorrencia={ocorrenciaId}&id_vistoria={vistoriaId}");
+					break;
+
+				default:
+					mode = "DSP";
+					Response.Redirect($"TelaCadastroOcorrencia.aspx?mode={mode}&id_ocorrencia={ocorrenciaId}&id_vistoria={vistoriaId}");
+					break;
+			}
+		}
+
+		protected void btnPesquisarOcorrencia_Click(object sender, EventArgs e)
+		{
+			List<string> parametros = new List<string>();
+
+			parametros.Add("");
+			parametros.Add(dptTipo.SelectedValue);
+			parametros.Add(txtDataInicial.Text);
+			parametros.Add(txtDataFinal.Text);
+			parametros.Add(txtDescricao.Text);
+			parametros.Add(txtIdVistoria.Text);
+
+			gdListaOcorrencias.DataSource = Functions.getOcorrenciaByParametros(parametros);
+			gdListaOcorrencias.DataBind();
 		}
 	}
 }
